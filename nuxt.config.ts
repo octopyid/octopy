@@ -154,9 +154,6 @@ export default defineNuxtConfig({
       ],
       failOnError: false,
     },
-    unenv: {
-      external: ['node:process'],
-    },
   },
 
   // Nuxt Icon configuration (scan only used icons)
