@@ -32,6 +32,7 @@ export default defineContentConfig({
         repo: z.string().optional(),
         language: z.string().optional(),
         isOpenSource: z.boolean().default(true),
+        date: z.any().optional(),
       }),
     }),
   },

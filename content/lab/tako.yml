@@ -1,6 +1,7 @@
 title: Tako Framework
 description: A Go TUI framework without the duct tape. Handles DI, events, routing, and plugins cleanly.
 icon: devicon:go
+date: '2025-10-01'
 tags:
   - Go
   - TUI

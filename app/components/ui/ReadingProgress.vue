@@ -1,22 +1,34 @@
 <script setup lang="ts">
-import { useWindowScroll } from '@vueuse/core';
-import { computed, onMounted, ref } from 'vue';
+import { useWindowScroll, useDebounceFn } from '@vueuse/core';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const { y } = useWindowScroll();
 const docHeight = ref(0);
 const winHeight = ref(0);
+let observer: MutationObserver | null = null;
+
+const updateMetrics = () => {
+  if (import.meta.server) return;
+  docHeight.value = document.documentElement.scrollHeight;
+  winHeight.value = window.innerHeight;
+};
+
+const debouncedUpdateMetrics = useDebounceFn(updateMetrics, 150);
 
 onMounted(() => {
-  const updateMetrics = () => {
-    docHeight.value = document.documentElement.scrollHeight;
-    winHeight.value = window.innerHeight;
-  };
   updateMetrics();
-  window.addEventListener('resize', updateMetrics);
+  window.addEventListener('resize', debouncedUpdateMetrics);
 
-  // Use MutationObserver in case content loads dynamically
-  const observer = new MutationObserver(updateMetrics);
+  // Debounced observer to prevent layout thrashing on markdown / Shiki render
+  observer = new MutationObserver(debouncedUpdateMetrics);
   observer.observe(document.body, { childList: true, subtree: true });
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', debouncedUpdateMetrics);
+  if (observer) {
+    observer.disconnect();
+  }
 });
 
 const progress = computed(() => {

@@ -1,6 +1,7 @@
 title: Lara Inotify
 description: Laravel File System Watcher.
 icon: devicon:laravel
+date: '2023-08-01'
 tags:
   - Laravel
   - Inotify

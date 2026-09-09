@@ -1,6 +1,7 @@
 title: Laravel Personate
 description: Login as a different user quickly for Laravel.
 icon: devicon:laravel
+date: '2022-09-01'
 tags:
   - Laravel
   - Auth

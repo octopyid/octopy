@@ -89,14 +89,38 @@ export default defineNuxtConfig({
     },
   },
 
+  // Route rules & static pre-rendering for instant page loads
+  routeRules: {
+    '/': { prerender: true },
+    '/insights': { prerender: true },
+    '/insights/**': { prerender: true },
+    '/lab': { prerender: true },
+  },
+
   // Nitro settings
   nitro: {
     prerender: {
-      crawlLinks: true,
+      crawlLinks: false,
+      routes: [
+        '/',
+        '/insights',
+        '/insights/why-i-built-rune',
+        '/insights/hello-world',
+        '/insights/laravel-scheduler-without-cron',
+        '/lab',
+        '/about',
+        '/contact',
+      ],
+      failOnError: false,
     },
     unenv: {
       external: ['node:process'],
     },
+  },
+
+  // Disable aggressive dev link checker to speed up page loads
+  linkChecker: {
+    enabled: false,
   },
 
   // MDC settings (for dynamic markdown via <MDC>)
@@ -133,6 +157,21 @@ export default defineNuxtConfig({
             default: 'github-light',
             dark: 'github-dark',
           },
+          langs: [
+            'ini',
+            'go',
+            'html',
+            'php',
+            'json',
+            'yml',
+            'yaml',
+            'bash',
+            'ts',
+            'js',
+            'vue',
+            'css',
+            'md',
+          ],
         },
       },
     },

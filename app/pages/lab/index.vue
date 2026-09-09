@@ -9,7 +9,7 @@ useSeoMeta({
 });
 
 const { data: projects, pending } = await useAsyncData('lab-projects', () => {
-  return queryCollection('lab').all();
+  return queryCollection('lab').order('date', 'DESC').all();
 });
 
 const activeTab = ref('All');

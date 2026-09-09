@@ -1,6 +1,7 @@
 title: Filament Palette
 description: Easily switch and customize the UI color palette for your FilamentPHP.
 icon: devicon:laravel
+date: '2024-03-01'
 tags:
   - Laravel
   - Filament

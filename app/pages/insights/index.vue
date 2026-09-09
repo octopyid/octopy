@@ -11,7 +11,10 @@ useSeoMeta({
 });
 
 const { data: articles } = await useAsyncData('insights-articles', () => {
-  return queryCollection('insights').order('date', 'DESC').all();
+  return queryCollection('insights')
+    .select('title', 'description', 'date', 'tags', 'readTime', 'path')
+    .order('date', 'DESC')
+    .all();
 });
 
 const activeTag = ref<string>('All');

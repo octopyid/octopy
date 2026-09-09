@@ -1,6 +1,7 @@
 title: Filament Tabify
 description: Transform your Filament dashboard with elegant Tabbed Widgets. Group multiple widgets into a single, organized view to save space and improve clarity.
 icon: devicon:laravel
+date: '2024-06-01'
 tags:
   - Laravel
   - Filament

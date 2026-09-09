@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { data: allProjects, pending } = await useAsyncData('featured-projects', () => {
-  return queryCollection('lab').limit(3).all();
+  return queryCollection('lab').order('date', 'DESC').limit(3).all();
 });
 const projects = computed(() => allProjects.value || []);
 </script>

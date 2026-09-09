@@ -1,6 +1,7 @@
 title: Google Photo CLI
 description: GPhoto streamlines the photo uploading process and helps you keep your photo library organized.
 icon: devicon:go
+date: '2024-01-01'
 tags:
   - Go
   - CLI

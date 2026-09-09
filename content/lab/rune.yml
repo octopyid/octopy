@@ -1,6 +1,7 @@
 title: Rune
 description: CLI-oriented task runner for project automation. Tasks as commands, simple as shell — works with any language or tech stack.
 icon: devicon:go
+date: '2026-09-09'
 tags:
   - Go
   - CLI
