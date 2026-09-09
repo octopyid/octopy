@@ -1,19 +1,33 @@
 import { defineCachedEventHandler, getQuery, createError } from '#imports';
 
+interface GithubRepoResponse {
+  stargazers_count?: number;
+  forks_count?: number;
+}
+
+// Only allow `owner/repo` slugs so the interpolated API path can't be abused.
+const REPO_RE = /^[\w.-]+\/[\w.-]+$/;
+
 export default defineCachedEventHandler(
   async (event) => {
     const query = getQuery(event);
     const repo = query.repo as string;
 
-    if (!repo) {
-      throw createError({ statusCode: 400, statusMessage: 'Repository is required' });
+    if (!repo || !REPO_RE.test(repo)) {
+      throw createError({ statusCode: 400, statusMessage: 'Valid repository is required' });
     }
 
     try {
-      const data = await $fetch<any>(`https://api.github.com/repos/${repo}`, {
-        headers: {
-          'User-Agent': 'OctopyID-Portfolio',
-        },
+      const config = useRuntimeConfig(event);
+      const headers: Record<string, string> = {
+        'User-Agent': 'OctopyID-Portfolio',
+      };
+      if (config.githubToken) {
+        headers.Authorization = `Bearer ${config.githubToken}`;
+      }
+
+      const data = await $fetch<GithubRepoResponse>(`https://api.github.com/repos/${repo}`, {
+        headers,
       });
 
       return {
