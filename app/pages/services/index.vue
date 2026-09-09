@@ -9,6 +9,15 @@ useSeoMeta({
     'Holistic infrastructure and application engineering services. Linux, Mail, and App Development.',
 });
 
+defineOgImageComponent('NuxtSeo', {
+  title: 'Services & Expertise',
+  description: 'Pragmatic engineering solutions, from mail servers to web apps.',
+});
+
+useSchemaOrg([
+  defineWebPage({ '@type': 'CollectionPage' }),
+]);
+
 const services = [
   {
     id: 'vue-electron',

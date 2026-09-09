@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { data: articles } = await useAsyncData('home-latest-insights', () => {
   return queryCollection('insights')
+    .where('draft', '=', false)
     .select('title', 'description', 'date', 'tags', 'readTime', 'path')
     .order('date', 'DESC')
     .limit(3)

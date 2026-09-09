@@ -9,6 +9,24 @@ useSeoMeta({
     'Learn about Supian M, the architect and executor behind Octopy ID, and our core engineering philosophy.',
 });
 
+defineOgImageComponent('NuxtSeo', {
+  title: 'About',
+  description: 'A brief history of my career and philosophy.',
+});
+
+useSchemaOrg([
+  defineWebPage({ '@type': 'ProfilePage' }),
+  definePerson({
+    name: 'Supian M',
+    url: 'https://octopy.dev/about',
+    jobTitle: 'Full-Stack Engineer and Infrastructure Consultant',
+    sameAs: [
+      'https://github.com/supianidz',
+      'https://linkedin.com/in/supianidz',
+    ],
+  }),
+]);
+
 const principles = [
   {
     title: 'Domain-Driven Design',

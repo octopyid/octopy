@@ -8,6 +8,15 @@ useSeoMeta({
   description: 'Open source experiments and libraries by Supian M.',
 });
 
+defineOgImageComponent('NuxtSeo', {
+  title: 'The Lab',
+  description: 'Open source experiments and libraries.',
+});
+
+useSchemaOrg([
+  defineWebPage({ '@type': 'CollectionPage' }),
+]);
+
 const { data: projects, pending } = await useAsyncData('lab-projects', () => {
   return queryCollection('lab').order('date', 'DESC').all();
 });

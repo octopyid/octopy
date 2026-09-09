@@ -6,12 +6,20 @@ defineProps({
 });
 
 const handleError = () => clearError({ redirect: '/' });
+
+// Error pages must never be indexed.
+useHead({
+  meta: [{ name: 'robots', content: 'noindex' }],
+});
 </script>
 
 <template>
-  <div class="flex min-h-screen flex-col items-center justify-center bg-bg px-4 text-center">
+  <div
+    role="alert"
+    class="relative isolate flex min-h-screen flex-col items-center justify-center bg-bg px-4 text-center"
+  >
     <!-- Decorative background -->
-    <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <div
         class="absolute top-1/2 left-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-primary-500/20 blur-[100px]"
       ></div>

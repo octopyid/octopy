@@ -9,6 +9,15 @@ useSeoMeta({
     'Get in touch with Supian M for infrastructure consulting and scalable app development.',
 });
 
+defineOgImageComponent('NuxtSeo', {
+  title: "Let's Build Together",
+  description: 'Infrastructure consulting and scalable app development.',
+});
+
+useSchemaOrg([
+  defineWebPage({ '@type': 'ContactPage' }),
+]);
+
 const socials = [
   {
     name: 'WhatsApp',

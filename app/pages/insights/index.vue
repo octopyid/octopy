@@ -10,8 +10,18 @@ useSeoMeta({
   description: 'Technical articles, architectural thoughts, and engineering reflections.',
 });
 
+defineOgImageComponent('NuxtSeo', {
+  title: 'Insights',
+  description: 'Thoughts on software architecture and server infrastructure.',
+});
+
+useSchemaOrg([
+  defineWebPage({ '@type': 'Blog' }),
+]);
+
 const { data: articles } = await useAsyncData('insights-articles', () => {
   return queryCollection('insights')
+    .where('draft', '=', false)
     .select('title', 'description', 'date', 'tags', 'readTime', 'path')
     .order('date', 'DESC')
     .all();

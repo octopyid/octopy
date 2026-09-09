@@ -1,13 +1,57 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import tailwindcss from '@tailwindcss/vite';
 
+// Single source of truth for Shiki grammars: shared by Vite optimizeDeps,
+// MDC highlighting, and Content highlighting.
+const shikiLangs = [
+  'ini',
+  'go',
+  'html',
+  'xml',
+  'php',
+  'json',
+  'jsonc',
+  'json5',
+  'yml',
+  'yaml',
+  'bash',
+  'shell',
+  'zsh',
+  'console',
+  'ts',
+  'typescript',
+  'tsx',
+  'js',
+  'javascript',
+  'jsx',
+  'vue',
+  'css',
+  'scss',
+  'md',
+  'markdown',
+  'sql',
+  'dockerfile',
+  'docker',
+  'toml',
+  'python',
+  'py',
+  'rust',
+  'diff',
+  'dart',
+  'nginx',
+  'makefile',
+  'c',
+  'cpp',
+];
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
 
   // Nuxt 4 app dir convention
   future: { compatibilityVersion: 4 },
 
-  devtools: { enabled: true },
+  // Devtools only outside production builds
+  devtools: { enabled: process.env.NODE_ENV !== 'production' },
 
   runtimeConfig: {
     smtpHost: process.env.SMTP_HOST || '',
@@ -41,55 +85,20 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-      include: [
-        '@shikijs/langs/ini',
-        '@shikijs/langs/go',
-        '@shikijs/langs/html',
-        '@shikijs/langs/xml',
-        '@shikijs/langs/php',
-        '@shikijs/langs/json',
-        '@shikijs/langs/jsonc',
-        '@shikijs/langs/json5',
-        '@shikijs/langs/yml',
-        '@shikijs/langs/yaml',
-        '@shikijs/langs/bash',
-        '@shikijs/langs/shell',
-        '@shikijs/langs/zsh',
-        '@shikijs/langs/console',
-        '@shikijs/langs/ts',
-        '@shikijs/langs/typescript',
-        '@shikijs/langs/tsx',
-        '@shikijs/langs/js',
-        '@shikijs/langs/javascript',
-        '@shikijs/langs/jsx',
-        '@shikijs/langs/vue',
-        '@shikijs/langs/css',
-        '@shikijs/langs/scss',
-        '@shikijs/langs/md',
-        '@shikijs/langs/markdown',
-        '@shikijs/langs/sql',
-        '@shikijs/langs/dockerfile',
-        '@shikijs/langs/docker',
-        '@shikijs/langs/toml',
-        '@shikijs/langs/python',
-        '@shikijs/langs/py',
-        '@shikijs/langs/rust',
-        '@shikijs/langs/diff',
-        '@shikijs/langs/dart',
-        '@shikijs/langs/nginx',
-        '@shikijs/langs/makefile',
-        '@shikijs/langs/c',
-        '@shikijs/langs/cpp',
-        '@unhead/schema-org/vue',
-        '@vue/devtools-core',
-        '@vue/devtools-kit',
-      ],
+      include: [...shikiLangs.map((lang) => `@shikijs/langs/${lang}`)],
     },
   },
 
-  // Nuxt Fonts configuration
+  // Nuxt Fonts configuration (self-hosted via fontsource, no render-blocking Google requests)
   fonts: {
-    families: [{ name: 'Iosevka', provider: 'fontsource' }],
+    families: [
+      {
+        name: 'Inter',
+        provider: 'fontsource',
+        weights: [400, 500, 600, 700, 800],
+      },
+      { name: 'Iosevka', provider: 'fontsource' },
+    ],
   },
 
   // Color mode: class-based (body.dark) for Tailwind v4 compat
@@ -129,7 +138,8 @@ export default defineNuxtConfig({
   // Nitro settings
   nitro: {
     prerender: {
-      crawlLinks: false,
+      // Discover internal routes (e.g. new insights/lab entries) automatically.
+      crawlLinks: true,
       routes: [
         '/',
         '/insights',
@@ -172,46 +182,7 @@ export default defineNuxtConfig({
         default: 'github-light',
         dark: 'github-dark',
       },
-      langs: [
-        'ini',
-        'go',
-        'html',
-        'xml',
-        'php',
-        'json',
-        'jsonc',
-        'json5',
-        'yml',
-        'yaml',
-        'bash',
-        'shell',
-        'zsh',
-        'console',
-        'ts',
-        'typescript',
-        'tsx',
-        'js',
-        'javascript',
-        'jsx',
-        'vue',
-        'css',
-        'scss',
-        'md',
-        'markdown',
-        'sql',
-        'dockerfile',
-        'docker',
-        'toml',
-        'python',
-        'py',
-        'rust',
-        'diff',
-        'dart',
-        'nginx',
-        'makefile',
-        'c',
-        'cpp',
-      ],
+      langs: shikiLangs,
     },
   },
 

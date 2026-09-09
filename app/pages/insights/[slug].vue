@@ -9,16 +9,31 @@ const { data: article } = await useAsyncData(`insights-${route.path}`, () => {
   return queryCollection('insights').path(route.path).first();
 });
 
-if (!article.value) {
+if (!article.value || article.value.draft) {
   throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true });
 }
+
+const { formatDate, toIsoDate } = useFormatDate();
 
 useSeoMeta({
   title: () => `${article.value?.title || 'Article'} | Insights`,
   description: () => article.value?.description || 'Read more on Octopy ID',
+  articlePublishedTime: () => toIsoDate(article.value?.date),
 });
 
-const { formatDate, toIsoDate } = useFormatDate();
+defineOgImageComponent('NuxtSeo', {
+  title: () => article.value?.title || 'Article',
+  description: () => article.value?.description || 'Read more on Octopy ID',
+});
+
+useSchemaOrg([
+  defineArticle({
+    headline: article.value?.title,
+    description: article.value?.description,
+    datePublished: toIsoDate(article.value?.date),
+    author: [{ name: 'Supian M', url: 'https://octopy.dev/about' }],
+  }),
+]);
 </script>
 
 <template>

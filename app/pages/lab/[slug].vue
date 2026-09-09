@@ -37,6 +37,18 @@ useSeoMeta({
   description: () => data.value?.project?.description || 'Open source project by Supian M.',
 });
 
+defineOgImageComponent('NuxtSeo', {
+  title: () => data.value?.project?.title || 'Project',
+  description: () => data.value?.project?.description || 'Open source project by Supian M.',
+});
+
+useSchemaOrg([
+  defineWebPage({
+    name: data.value?.project?.title,
+    description: data.value?.project?.description,
+  }),
+]);
+
 const stats = useGithubStats(
   data.value?.project?.repo,
   data.value?.project?.isOpenSource !== false,
