@@ -40,9 +40,8 @@ const stackGroups = [
   <section class="border-t border-border/50 bg-surface-raised py-16 md:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mb-12" v-motion-slide-visible-once-bottom>
-        <div class="mb-4 flex items-center gap-3">
-          <div class="h-px w-12 bg-primary-500"></div>
-          <h2 class="text-xs font-bold tracking-widest text-primary-500 uppercase">The Arsenal</h2>
+        <div class="mb-4">
+          <UiSectionEyebrow text="The Arsenal" />
         </div>
         <h3 class="mb-4 text-3xl font-extrabold text-text-primary md:text-4xl">Tech Stack</h3>
         <p class="max-w-2xl text-lg leading-relaxed text-text-secondary">

@@ -22,7 +22,7 @@ const arms = [
 <template>
   <div class="relative mx-auto aspect-square w-full max-w-md p-4">
     <!-- SVG Circuits -->
-    <svg viewBox="0 0 400 400" class="absolute inset-0 h-full w-full">
+    <svg viewBox="0 0 400 400" aria-hidden="true" class="absolute inset-0 h-full w-full">
       <!-- Base Traces -->
       <g
         stroke="currentColor"
@@ -38,7 +38,7 @@ const arms = [
       <!-- Glowing Animated Traces -->
       <g
         stroke="currentColor"
-        class="text-primary-500 drop-shadow-[0_0_8px_rgba(20,184,166,0.8)]"
+        class="text-primary-500 drop-shadow-[0_0_8px_rgba(179,71,30,0.8)]"
         fill="none"
         stroke-width="2"
         stroke-linecap="round"
@@ -81,7 +81,7 @@ const arms = [
     <!-- Center Head (Octopy ID) -->
     <div class="absolute inset-0 flex items-center justify-center">
       <div
-        class="relative flex h-28 w-28 flex-col items-center justify-center rounded-full border border-primary-500/30 bg-surface/80 shadow-[0_0_30px_rgba(20,184,166,0.15)] backdrop-blur-md"
+        class="relative flex h-28 w-28 flex-col items-center justify-center rounded-full border border-primary-500/30 bg-surface/80 shadow-[0_0_30px_rgba(179,71,30,0.15)] backdrop-blur-md"
       >
         <!-- Inner ring -->
         <div

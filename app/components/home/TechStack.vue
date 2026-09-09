@@ -26,13 +26,14 @@ const techList = [
             :key="tech.name"
             class="flex items-center gap-3 text-text-secondary transition-colors hover:text-primary-500"
           >
-            <Icon :name="tech.icon" size="32" />
+            <Icon :name="tech.icon" size="32" aria-hidden="true" />
             <span class="hidden text-lg font-medium sm:block">{{ tech.name }}</span>
           </div>
-          <!-- Duplicate for seamless scrolling -->
+          <!-- Duplicate for seamless scrolling (hidden from assistive tech) -->
           <div
             v-for="tech in techList"
             :key="tech.name + '-dup'"
+            aria-hidden="true"
             class="flex items-center gap-3 text-text-secondary transition-colors hover:text-primary-500"
           >
             <Icon :name="tech.icon" size="32" />

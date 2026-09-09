@@ -53,6 +53,8 @@ const filteredProjects = computed(() => {
     <!-- Language Tabs -->
     <div
       v-if="!pending && projects && projects.length > 0"
+      role="group"
+      aria-label="Filter projects by language"
       class="mb-10 inline-flex flex-wrap gap-1.5 rounded-full border border-border/40 bg-tab-bg p-1.5"
       v-motion-slide-visible-once-bottom
     >
@@ -60,6 +62,7 @@ const filteredProjects = computed(() => {
         v-for="lang in languages"
         :key="lang"
         @click="activeTab = lang"
+        :aria-pressed="activeTab === lang"
         class="rounded-full px-5 py-1.5 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
         :class="
           activeTab === lang

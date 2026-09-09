@@ -4,9 +4,8 @@
       <div class="grid items-center gap-12 md:grid-cols-12">
         <!-- Text -->
         <div class="md:col-span-7">
-          <div class="mb-6 flex items-center gap-3">
-            <div class="h-px w-12 bg-primary-500"></div>
-            <h2 class="text-xs font-bold tracking-widest text-primary-500 uppercase">The Person</h2>
+          <div class="mb-6">
+            <UiSectionEyebrow text="The Person" />
           </div>
 
           <h3 class="mb-8 text-3xl leading-tight font-extrabold text-text-primary md:text-5xl">

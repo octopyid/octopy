@@ -34,13 +34,20 @@ const { copy, copied } = useClipboard({ source: props.code });
       @click="copy()"
       class="absolute right-2 z-20 rounded-md bg-surface p-1.5 text-text-muted opacity-0 shadow-sm ring-1 ring-border transition-all duration-200 group-hover:opacity-100 hover:bg-surface-raised hover:text-primary-500 focus:opacity-100"
       :class="{
-        '!text-green-500 !opacity-100 !ring-green-500/50': copied,
+        '!text-success !opacity-100 !ring-success/50': copied,
         'top-10': language || filename,
         'top-2': !language && !filename,
       }"
       aria-label="Copy code"
     >
-      <Icon :name="copied ? 'ph:check-bold' : 'ph:copy-duotone'" size="16" />
+      <Icon
+        :name="copied ? 'ph:check-bold' : 'ph:copy-duotone'"
+        size="16"
+        aria-hidden="true"
+      />
+      <span class="sr-only" aria-live="polite">
+        {{ copied ? 'Code copied to clipboard' : '' }}
+      </span>
     </button>
   </div>
 </template>

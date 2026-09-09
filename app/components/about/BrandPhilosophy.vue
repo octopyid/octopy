@@ -3,9 +3,8 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid items-center gap-12 md:grid-cols-2">
         <div>
-          <div class="mb-6 flex items-center gap-3">
-            <div class="h-px w-12 bg-primary-500"></div>
-            <h2 class="text-xs font-bold tracking-widest text-primary-500 uppercase">The Brand</h2>
+          <div class="mb-6">
+            <UiSectionEyebrow text="The Brand" />
           </div>
 
           <h3 class="mb-6 text-3xl font-extrabold text-text-primary md:text-5xl">

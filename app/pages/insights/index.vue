@@ -89,10 +89,11 @@ watch(activeTag, () => {
         </div>
 
         <!-- Pagination -->
-        <div v-if="totalPages > 1" class="mt-12 flex justify-center gap-2">
+        <nav v-if="totalPages > 1" aria-label="Insights pagination" class="mt-12 flex justify-center gap-2">
           <button
             @click="currentPage--"
             :disabled="currentPage === 1"
+            aria-label="Go to previous page"
             class="flex items-center justify-center rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium transition-colors hover:bg-surface-raised disabled:cursor-not-allowed disabled:opacity-50"
           >
             Prev
@@ -101,6 +102,8 @@ watch(activeTag, () => {
             v-for="page in totalPages"
             :key="page"
             @click="currentPage = page"
+            :aria-label="`Go to page ${page}`"
+            :aria-current="currentPage === page ? 'page' : undefined"
             class="flex h-10 w-10 items-center justify-center rounded-lg text-sm font-medium transition-colors"
             :class="
               currentPage === page
@@ -113,11 +116,12 @@ watch(activeTag, () => {
           <button
             @click="currentPage++"
             :disabled="currentPage === totalPages"
+            aria-label="Go to next page"
             class="flex items-center justify-center rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium transition-colors hover:bg-surface-raised disabled:cursor-not-allowed disabled:opacity-50"
           >
             Next
           </button>
-        </div>
+        </nav>
       </div>
 
       <!-- Sidebar: Filters -->
@@ -132,11 +136,12 @@ watch(activeTag, () => {
               v-for="tag in tags"
               :key="tag"
               @click="activeTag = tag"
-              class="rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 focus:outline-none"
+              :aria-pressed="activeTag === tag"
+              class="rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-none"
               :class="
                 activeTag === tag
                   ? 'border border-primary-500 bg-primary-500 text-white shadow-glow'
-                  : 'border border-transparent bg-surface text-text-secondary hover:bg-primary-500/10 hover:text-primary-500 dark:bg-zinc-800/50 dark:hover:bg-primary-500/10'
+                  : 'border border-transparent bg-surface text-text-secondary hover:bg-primary-500/10 hover:text-primary-500 dark:bg-surface-raised dark:hover:bg-primary-500/10'
               "
             >
               {{ tag === 'All' ? 'All Topics' : tag }}

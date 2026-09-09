@@ -5,7 +5,7 @@
 <template>
   <section class="relative overflow-hidden pt-24 pb-32 lg:pt-36 lg:pb-40">
     <!-- Rich Gradient Mesh Background -->
-    <div class="absolute inset-0 -z-10 overflow-hidden">
+    <div aria-hidden="true" class="absolute inset-0 -z-10 overflow-hidden">
       <div
         class="absolute -top-[20%] left-[20%] h-[500px] w-[500px] animate-pulse rounded-full bg-primary-500/20 mix-blend-multiply blur-[120px] dark:mix-blend-screen"
       ></div>
