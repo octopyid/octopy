@@ -38,20 +38,12 @@ const socials = [
 </script>
 
 <template>
-  <div class="mx-auto max-w-7xl px-4 pt-24 pb-20 sm:px-6 lg:px-8">
-    <div class="mb-16 max-w-3xl">
-      <div class="mb-4 flex items-center gap-3">
-        <div class="h-px w-8 bg-primary-500"></div>
-        <h2 class="text-xs font-bold tracking-widest text-primary-500 uppercase">Get In Touch</h2>
-      </div>
-      <h1 class="mb-6 text-4xl font-extrabold tracking-tight text-text-primary md:text-5xl">
-        Let's Build Together
-      </h1>
-      <p class="text-xl leading-relaxed text-text-secondary">
-        Whether you need reliable Linux infrastructure, a secure mail server, or a pragmatic
-        full-stack application, I'm here to help you execute.
-      </p>
-    </div>
+  <UiContainer size="7xl" class="pt-24 pb-20">
+    <UiPageHeader
+      eyebrow="Get In Touch"
+      title="Let's Build Together"
+      description="Whether you need reliable Linux infrastructure, a secure mail server, or a pragmatic full-stack application, I'm here to help you execute."
+    />
 
     <div class="grid gap-12 lg:grid-cols-12 lg:gap-8">
       <!-- Contact Info -->
@@ -105,5 +97,5 @@ const socials = [
         <ContactForm />
       </div>
     </div>
-  </div>
+  </UiContainer>
 </template>

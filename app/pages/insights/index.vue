@@ -52,20 +52,12 @@ watch(activeTag, () => {
 </script>
 
 <template>
-  <div class="mx-auto max-w-7xl px-4 pt-24 pb-20 sm:px-6 lg:px-8">
-    <div class="mb-16">
-      <div class="mb-4 flex items-center gap-3">
-        <div class="h-px w-8 bg-primary-500"></div>
-        <h2 class="text-xs font-bold tracking-widest text-primary-500 uppercase">The Blog</h2>
-      </div>
-      <h1 class="mb-6 text-4xl font-extrabold tracking-tight text-text-primary md:text-5xl">
-        Insights
-      </h1>
-      <p class="text-xl leading-relaxed text-text-secondary">
-        Thoughts on software architecture, server infrastructure, and the daily grind of building
-        reliable systems.
-      </p>
-    </div>
+  <UiContainer size="7xl" class="pt-24 pb-20">
+    <UiPageHeader
+      eyebrow="The Blog"
+      title="Insights"
+      description="Thoughts on software architecture, server infrastructure, and the daily grind of building reliable systems."
+    />
 
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <!-- Main Content: Articles -->
@@ -143,5 +135,5 @@ watch(activeTag, () => {
         </div>
       </div>
     </div>
-  </div>
+  </UiContainer>
 </template>

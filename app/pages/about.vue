@@ -34,12 +34,13 @@ const principles = [
 <template>
   <div>
     <!-- Page Header -->
-    <div class="mx-auto max-w-4xl px-4 pt-24 pb-12 text-center sm:px-6 lg:px-8">
-      <h1 class="mb-4 text-4xl font-extrabold tracking-tight text-text-primary md:text-5xl">
-        About
-      </h1>
-      <p class="text-xl text-text-muted">A brief history of my career and philosophy.</p>
-    </div>
+    <UiContainer size="4xl" class="pt-24 pb-12">
+      <UiPageHeader
+        align="center"
+        title="About"
+        description="A brief history of my career and philosophy."
+      />
+    </UiContainer>
 
     <!-- Components -->
     <AboutPersonalStory />
