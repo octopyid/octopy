@@ -6,7 +6,7 @@ const { data, error, pending } = await useAsyncData(`lab-detail-${route.params.s
     .where('stem', '=', `lab/${route.params.slug}`)
     .first();
 
-  if (!project) {
+  if (!project || project.isOpenSource === false) {
     throw createError({ statusCode: 404, statusMessage: 'Project not found', fatal: true });
   }
 
