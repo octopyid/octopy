@@ -1,23 +1,18 @@
 <script setup lang="ts">
+export interface InsightArticle {
+  title: string;
+  description?: string;
+  date: string;
+  tags?: string[];
+  readTime?: number;
+  path: string;
+}
+
 defineProps<{
-  article: {
-    title: string;
-    description?: string;
-    date: string;
-    tags?: string[];
-    readTime?: number;
-    path: string;
-  };
+  article: InsightArticle;
 }>();
 
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  }).format(date);
-};
+const { formatDate, toIsoDate } = useFormatDate();
 </script>
 
 <template>
@@ -29,12 +24,13 @@ const formatDate = (dateString: string) => {
         <div
           class="mb-4 flex items-center gap-4 text-xs font-medium tracking-wider text-text-muted uppercase"
         >
-          <time :datetime="article.date">{{ formatDate(article.date) }}</time>
+          <time :datetime="toIsoDate(article.date)">{{ formatDate(article.date, 'short') }}</time>
           <span
             v-if="article.readTime"
             class="flex items-center gap-1 before:mr-3 before:content-['•']"
           >
-            <Icon name="ph:clock-duotone" size="14" /> {{ article.readTime }} min read
+            <Icon name="ph:clock-duotone" size="14" aria-hidden="true" />
+            {{ article.readTime }} min read
           </span>
         </div>
 
@@ -49,7 +45,7 @@ const formatDate = (dateString: string) => {
         </p>
       </div>
 
-      <div class="mt-2 mt-auto flex items-center justify-between border-t border-border/50 pt-5">
+      <div class="mt-auto flex items-center justify-between border-t border-border/50 pt-5">
         <div class="flex flex-wrap gap-2">
           <span
             v-for="tag in article.tags"
@@ -62,6 +58,7 @@ const formatDate = (dateString: string) => {
         <Icon
           name="ph:arrow-right-bold"
           class="text-text-muted transition-transform duration-300 group-hover:translate-x-1.5 group-hover:text-primary-500"
+          aria-hidden="true"
         />
       </div>
     </article>
