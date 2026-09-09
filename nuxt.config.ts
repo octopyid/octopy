@@ -95,6 +95,10 @@ export default defineNuxtConfig({
     '/insights': { prerender: true },
     '/insights/**': { prerender: true },
     '/lab': { prerender: true },
+    '/lab/**': { swr: 3600 },
+    '/about': { prerender: true },
+    '/contact': { prerender: true },
+    '/services': { prerender: true },
   },
 
   // Nitro settings
@@ -110,6 +114,7 @@ export default defineNuxtConfig({
         '/lab',
         '/about',
         '/contact',
+        '/services',
       ],
       failOnError: false,
     },
@@ -118,9 +123,21 @@ export default defineNuxtConfig({
     },
   },
 
-  // Disable aggressive dev link checker to speed up page loads
+  // Nuxt Icon configuration (scan only used icons)
+  icon: {
+    clientBundle: {
+      scan: true,
+      sizeLimitKb: 512,
+    },
+    serverBundle: false,
+  },
+
+  // Performance optimizations
   linkChecker: {
     enabled: false,
+  },
+  ogImage: {
+    enabled: process.env.NODE_ENV === 'production',
   },
 
   // MDC settings (for dynamic markdown via <MDC>)
