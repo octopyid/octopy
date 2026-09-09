@@ -72,13 +72,10 @@ const principles = [
           I'm currently available for freelance projects and consulting. Let's discuss how I can
           help build or scale your systems.
         </p>
-        <NuxtLink
-          to="/contact"
-          class="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-primary-500 px-8 text-sm font-bold text-white shadow-glow transition-all hover:-translate-y-1 hover:bg-primary-600 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-none"
-        >
-          <Icon name="ph:envelope-simple-duotone" size="20" />
+        <UiButton to="/contact">
+          <Icon name="ph:envelope-simple-duotone" size="20" aria-hidden="true" />
           Let's Talk
-        </NuxtLink>
+        </UiButton>
       </div>
     </section>
   </div>

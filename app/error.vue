@@ -30,18 +30,15 @@ const handleError = () => clearError({ redirect: '/' });
 
       <p class="mb-10 text-lg leading-relaxed text-text-secondary">
         {{
-          error?.statusText ||
+          error?.statusMessage ||
           "The page you're looking for doesn't exist or has been moved to another universe."
         }}
       </p>
 
-      <button
-        @click="handleError"
-        class="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary-500 px-8 font-semibold text-white shadow-glow transition-all hover:-translate-y-1 hover:bg-primary-600 focus:ring-2 focus:ring-interactive focus:ring-offset-2 focus:outline-none"
-      >
-        <Icon name="ph:house-line-bold" size="20" />
+      <UiButton @click="handleError">
+        <Icon name="ph:house-line-bold" size="20" aria-hidden="true" />
         Return Home
-      </button>
+      </UiButton>
     </div>
   </div>
 </template>

@@ -56,18 +56,8 @@
 
       <!-- CTAs -->
       <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <NuxtLink
-          to="/lab"
-          class="inline-flex h-11 items-center justify-center rounded-md bg-primary-500 px-8 text-sm font-medium text-white shadow-glow transition-colors hover:bg-primary-600 focus-visible:ring-2 focus-visible:ring-interactive focus-visible:outline-none disabled:opacity-50"
-        >
-          View Projects
-        </NuxtLink>
-        <NuxtLink
-          to="/services"
-          class="inline-flex h-11 items-center justify-center rounded-md border border-border bg-surface-raised px-8 text-sm font-medium text-text-primary transition-colors hover:bg-surface focus-visible:ring-2 focus-visible:ring-interactive focus-visible:outline-none disabled:opacity-50"
-        >
-          Explore Services
-        </NuxtLink>
+        <UiButton to="/lab" size="md"> View Projects </UiButton>
+        <UiButton to="/services" variant="secondary" size="md"> Explore Services </UiButton>
       </div>
     </div>
   </section>

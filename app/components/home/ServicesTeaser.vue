@@ -1,12 +1,18 @@
 <script setup lang="ts">
-const services = [
+interface Service {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const services: Service[] = [
   {
     id: 'linux',
     title: 'Linux Server Engineering',
     description:
       'High-availability architecture, security hardening, and performance tuning for mission-critical infrastructure.',
     icon: 'ph:terminal-window-duotone',
-    path: '/services/linux',
   },
   {
     id: 'mail',
@@ -14,7 +20,6 @@ const services = [
     description:
       'Deploying and managing robust self-hosted mail stacks (Mailcow, Poste.io) with strict SPF, DKIM, and DMARC configurations.',
     icon: 'ph:envelope-simple-duotone',
-    path: '/services/mail',
   },
   {
     id: 'app-dev',
@@ -22,7 +27,6 @@ const services = [
     description:
       'Full-stack application development utilizing modern paradigms with Nuxt, Vue, Go, and Laravel.',
     icon: 'ph:code-block-duotone',
-    path: '/services/app-dev',
   },
 ];
 </script>
@@ -47,23 +51,18 @@ const services = [
           <div
             class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-interactive-muted text-primary-500"
           >
-            <Icon :name="service.icon" size="28" />
+            <Icon :name="service.icon" size="28" aria-hidden="true" />
           </div>
           <h3 class="mb-3 text-xl font-bold text-text-primary">{{ service.title }}</h3>
-          <p class="mb-8 text-sm leading-relaxed text-text-secondary">{{ service.description }}</p>
-
-          <!-- Removed NuxtLink -->
+          <p class="text-sm leading-relaxed text-text-secondary">{{ service.description }}</p>
         </div>
       </div>
 
       <div class="mt-16 flex justify-center">
-        <NuxtLink
-          to="/services"
-          class="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-border bg-surface px-8 text-sm font-semibold text-text-primary transition-all hover:-translate-y-0.5 hover:border-primary-500 hover:text-primary-500 hover:shadow-glow focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-none"
-        >
+        <UiButton to="/services" variant="secondary" size="md">
           Explore All Expertise
-          <Icon name="ph:arrow-right-bold" />
-        </NuxtLink>
+          <Icon name="ph:arrow-right-bold" aria-hidden="true" />
+        </UiButton>
       </div>
     </div>
   </section>

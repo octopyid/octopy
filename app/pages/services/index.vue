@@ -100,13 +100,10 @@ const services = [
           <Icon name="simple-icons:whatsapp" size="20" />
           Chat on WhatsApp
         </a>
-        <NuxtLink
-          to="/contact"
-          class="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-border bg-surface px-8 text-sm font-bold text-text-primary transition-all hover:-translate-y-1 hover:border-primary-500 hover:text-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-none"
-        >
-          <Icon name="simple-icons:maildotru" size="20" />
+        <UiButton to="/contact" variant="secondary">
+          <Icon name="simple-icons:maildotru" size="20" aria-hidden="true" />
           Send an Email
-        </NuxtLink>
+        </UiButton>
       </div>
     </div>
   </UiContainer>
