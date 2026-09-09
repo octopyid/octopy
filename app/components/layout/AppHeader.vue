@@ -13,15 +13,6 @@ watch(
     isMobileMenuOpen.value = false;
   },
 );
-
-const links = [
-  { name: 'Home', path: '/' },
-  { name: 'Services', path: '/services' },
-  { name: 'Lab', path: '/lab' },
-  { name: 'Insights', path: '/insights' },
-  { name: 'About', path: '/about' },
-  { name: 'Contact', path: '/contact' },
-];
 </script>
 
 <template>
@@ -48,8 +39,10 @@ const links = [
             <ThemeSwitcher class="mr-4" />
             <button
               @click="toggleMobileMenu"
-              class="flex h-[36px] w-[36px] items-center justify-center text-text-secondary transition-colors hover:text-text-primary focus:outline-none"
+              class="flex h-[36px] w-[36px] items-center justify-center text-text-secondary transition-colors hover:text-text-primary focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-none"
               aria-label="Toggle mobile menu"
+              :aria-expanded="isMobileMenuOpen"
+              aria-controls="mobile-menu"
             >
               <Icon :name="isMobileMenuOpen ? 'ph:x-bold' : 'ph:list-bold'" size="24" />
             </button>
@@ -59,30 +52,6 @@ const links = [
     </UiContainer>
 
     <!-- Mobile Menu Overlay -->
-    <transition
-      enter-active-class="transition duration-300 ease-out"
-      enter-from-class="opacity-0 -translate-y-4"
-      enter-to-class="opacity-100 translate-y-0"
-      leave-active-class="transition duration-200 ease-in"
-      leave-from-class="opacity-100 translate-y-0"
-      leave-to-class="opacity-0 -translate-y-4"
-    >
-      <div
-        v-if="isMobileMenuOpen"
-        class="absolute inset-x-0 top-full z-40 h-[calc(100vh-73px)] overflow-y-auto bg-bg/95 backdrop-blur-xl lg:hidden"
-      >
-        <nav class="flex flex-col gap-6 px-4 py-8 sm:px-6">
-          <NuxtLink
-            v-for="link in links"
-            :key="link.path"
-            :to="link.path"
-            class="text-2xl font-bold tracking-tight text-text-primary transition-colors hover:text-primary-500"
-            active-class="text-primary-500"
-          >
-            {{ link.name }}
-          </NuxtLink>
-        </nav>
-      </div>
-    </transition>
+    <LayoutAppMobileMenu :open="isMobileMenuOpen" @close="isMobileMenuOpen = false" />
   </header>
 </template>
