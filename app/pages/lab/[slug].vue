@@ -1,4 +1,68 @@
 <script setup lang="ts">
+function resolveMarkdownAssets(content: string, docsUrl: string, repo?: string): string {
+  if (!content) return '';
+  const rawBase = docsUrl.substring(0, docsUrl.lastIndexOf('/') + 1);
+  const repoBase = repo ? `https://github.com/${repo}/blob/main/` : rawBase;
+
+  const toAbsoluteRaw = (url: string) => {
+    if (!url) return url;
+    const trimmed = url.trim();
+    if (/^(https?:|\/\/|data:|#|mailto:)/i.test(trimmed)) {
+      return trimmed;
+    }
+    const cleanUrl = trimmed.startsWith('./')
+      ? trimmed.slice(2)
+      : trimmed.startsWith('/')
+        ? trimmed.slice(1)
+        : trimmed;
+    return `${rawBase}${cleanUrl}`;
+  };
+
+  const toAbsoluteLink = (url: string) => {
+    if (!url) return url;
+    const trimmed = url.trim();
+    if (/^(https?:|\/\/|#|mailto:)/i.test(trimmed)) {
+      return trimmed;
+    }
+    const cleanUrl = trimmed.startsWith('./')
+      ? trimmed.slice(2)
+      : trimmed.startsWith('/')
+        ? trimmed.slice(1)
+        : trimmed;
+    return `${repoBase}${cleanUrl}`;
+  };
+
+  let resolved = content;
+
+  // 1. HTML <img> tags: src="..." or src='...'
+  resolved = resolved.replace(
+    /<img\b([^>]*?)(\bsrc=["'])([^"']+)(["'])([^>]*?)>/gi,
+    (_match, before, srcOpen, srcVal, srcClose, after) => {
+      return `<img${before}${srcOpen}${toAbsoluteRaw(srcVal)}${srcClose}${after}>`;
+    },
+  );
+
+  // 2. Markdown images: ![alt](url "title") or ![alt](url)
+  resolved = resolved.replace(
+    /!\[(.*?)\]\((\S+?)(?:\s+["'](.*?)["'])?\)/g,
+    (_match, alt, url, title) => {
+      const absUrl = toAbsoluteRaw(url);
+      return title ? `![${alt}](${absUrl} "${title}")` : `![${alt}](${absUrl})`;
+    },
+  );
+
+  // 3. Markdown relative links: [text](url) where url is relative and not an anchor
+  resolved = resolved.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
+    const trimmedUrl = url.trim();
+    if (/^(https?:|\/\/|#|mailto:)/i.test(trimmedUrl)) {
+      return match;
+    }
+    return `[${text}](${toAbsoluteLink(trimmedUrl)})`;
+  });
+
+  return resolved;
+}
+
 const route = useRoute();
 
 const { data, error, pending } = await useAsyncData(`lab-detail-${route.params.slug}`, async () => {
@@ -13,7 +77,8 @@ const { data, error, pending } = await useAsyncData(`lab-detail-${route.params.s
   let markdown = '';
   if (project.docs) {
     try {
-      markdown = await $fetch<string>(project.docs);
+      const raw = await $fetch<string>(project.docs);
+      markdown = resolveMarkdownAssets(raw, project.docs, project.repo);
     } catch (e) {
       markdown = '> Failed to load documentation from repository.';
     }
