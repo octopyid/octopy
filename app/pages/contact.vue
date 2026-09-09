@@ -56,13 +56,11 @@ const socials = [
     <div class="grid gap-12 lg:grid-cols-12 lg:gap-8">
       <!-- Contact Info -->
       <div class="space-y-10 lg:col-span-5">
-        <div class="prose-primary prose text-text-secondary prose-invert">
-          <p>
-            I am currently open for consulting, freelance projects, and exciting full-time
-            opportunities. Drop a message using the form, or reach out directly via my professional
-            networks.
-          </p>
-        </div>
+        <p class="leading-relaxed text-text-secondary">
+          I am currently open for consulting, freelance projects, and exciting full-time
+          opportunities. Drop a message using the form, or reach out directly via my professional
+          networks.
+        </p>
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <a

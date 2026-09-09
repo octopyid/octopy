@@ -45,6 +45,11 @@
   --color-tab-bg: #f3f4f6;
   --color-tab-active: #ffffff;
 
+  /* Status tokens (replace ad-hoc green/red palette usage) */
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --color-warning: #d97706;
+
   --duration-fast: 150ms;
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -71,6 +76,10 @@
 
   --color-tab-bg: #18181b;
   --color-tab-active: #27272a;
+
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+  --color-warning: #fbbf24;
 }
 
 /* ==========================================================
@@ -90,6 +99,20 @@
   html {
     @apply bg-bg font-sans text-text-primary antialiased;
     scroll-behavior: smooth;
+    /* Offset anchor jumps (TOC links) below the sticky header */
+    scroll-padding-top: 5.5rem;
+  }
+
+  /* Respect users who prefer reduced motion (hero blobs, marquee, circuit, reveals) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   ::selection {
@@ -124,11 +147,16 @@
 }
 
 @utility text-gradient-primary {
-  @apply bg-gradient-to-br from-primary-400 to-primary-600 bg-clip-text text-transparent;
+  @apply bg-linear-to-br from-primary-400 to-primary-600 bg-clip-text text-transparent;
 }
 
 @utility focus-ring {
   @apply outline-2 outline-offset-2 outline-interactive;
+}
+
+/* Keyboard-only "skip to content" link: hidden until focused */
+@utility skip-link {
+  @apply fixed top-2 left-2 z-[200] -translate-y-24 rounded-lg bg-primary-500 px-4 py-2 text-sm font-bold text-white transition-transform focus:translate-y-0 focus-visible:outline-none;
 }
 
 /* ==========================================================

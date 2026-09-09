@@ -17,7 +17,7 @@
             >
           </h3>
 
-          <div class="prose max-w-none text-lg leading-relaxed text-text-secondary prose-invert">
+          <div class="max-w-none text-lg leading-relaxed text-text-secondary">
             <p class="mb-6">
               I build and scale web applications and server environments. Over the past decade, I
               have operated at the intersection of software development and Linux server
