@@ -10,7 +10,7 @@ useSeoMeta({
   description: 'Technical articles, architectural thoughts, and engineering reflections.',
 });
 
-defineOgImageComponent('NuxtSeo', {
+defineOgImageComponent('OctopySeo', {
   title: 'Insights',
   description: 'Thoughts on software architecture and server infrastructure.',
 });

@@ -9,7 +9,7 @@ useSeoMeta({
     'Learn about Supian M, the architect and executor behind Octopy ID, and our core engineering philosophy.',
 });
 
-defineOgImageComponent('NuxtSeo', {
+defineOgImageComponent('OctopySeo', {
   title: 'About',
   description: 'A brief history of my career and philosophy.',
 });

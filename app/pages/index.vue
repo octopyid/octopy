@@ -9,7 +9,7 @@ useSeoMeta({
     'Supian M / Octopy ID. Architecting scalable Linux servers, enterprise mail, and full-stack web applications.',
 });
 
-defineOgImageComponent('NuxtSeo', {
+defineOgImageComponent('OctopySeo', {
   title: 'Infrastructure & Engineering',
   description:
     'Architecting scalable Linux servers, enterprise mail, and full-stack web applications.',

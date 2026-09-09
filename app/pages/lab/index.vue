@@ -8,7 +8,7 @@ useSeoMeta({
   description: 'Open source experiments and libraries by Supian M.',
 });
 
-defineOgImageComponent('NuxtSeo', {
+defineOgImageComponent('OctopySeo', {
   title: 'The Lab',
   description: 'Open source experiments and libraries.',
 });

@@ -21,7 +21,7 @@ useSeoMeta({
   articlePublishedTime: () => toIsoDate(article.value?.date),
 });
 
-defineOgImageComponent('NuxtSeo', {
+defineOgImageComponent('OctopySeo', {
   title: () => article.value?.title || 'Article',
   description: () => article.value?.description || 'Read more on Octopy ID',
 });

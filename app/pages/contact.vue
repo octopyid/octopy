@@ -9,7 +9,7 @@ useSeoMeta({
     'Get in touch with Supian M for infrastructure consulting and scalable app development.',
 });
 
-defineOgImageComponent('NuxtSeo', {
+defineOgImageComponent('OctopySeo', {
   title: "Let's Build Together",
   description: 'Infrastructure consulting and scalable app development.',
 });

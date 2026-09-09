@@ -37,7 +37,7 @@ useSeoMeta({
   description: () => data.value?.project?.description || 'Open source project by Supian M.',
 });
 
-defineOgImageComponent('NuxtSeo', {
+defineOgImageComponent('OctopySeo', {
   title: () => data.value?.project?.title || 'Project',
   description: () => data.value?.project?.description || 'Open source project by Supian M.',
 });
