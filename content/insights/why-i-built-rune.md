@@ -165,17 +165,15 @@ The shell command is only one part. The command itself has an interface — and 
 
 ## Attributes: The Interface Layer
 
-One of the design choices I particularly like is the use of attributes:
+One of the design choices I particularly like is how the interface lives right in the signature:
 
 ```text
-#[desc: Generate a new model]
-#[arg: name | Model name]
-#[option: force | Overwrite existing model]
-make:model:
-    ...
+#[Generate a new model]
+make:model name --force?:
+    go run ./cmd/make {{name}} {{force}}
 ```
 
-The attributes describe the command interface. The task tells Rune: *this command has a description, accepts an argument, and has an option.* And Rune uses that to provide help, validation, shell completion, and confirmation prompts.
+The description is an attribute. The argument and the flag are declared in the signature. The task tells Rune: *this command has a description, accepts a positional argument, and has an optional boolean flag.* And Rune uses that to provide help, validation, shell completion, and confirmation prompts.
 
 The information stays close to the command itself. No separate documentation. No README that drifts out of sync. The task definition **is** the source of truth.
 
@@ -187,15 +185,16 @@ Once you think about tasks as commands, another problem becomes obvious. Not eve
 
 ```text
 test, lint, build     ← safe
-db:reset, db:wipe     ← destructive
+db:fresh, db:wipe     ← destructive
 ```
 
 So Rune supports confirmation:
 
 ```text
-#[confirm: This will permanently delete the database. Continue?]
-db:wipe:
-    ...
+#[Reset the database schema]
+#[confirm: This will permanently delete all database data.]
+db:fresh:
+    dropdb --if-exists app_dev && createdb app_dev
 ```
 
 The philosophy: **make accidental execution difficult while keeping intentional automation easy.**
@@ -214,7 +213,7 @@ But the core idea feels right:
 
 Make thinks in terms of build targets. Just provides a great interface for project recipes. Rune asks: *what if the project task itself were a CLI command?*
 
-Then things like these make sense: `db:migrate` is a namespaced command. `make:model User` has an argument. `make:model User --force` has an option. `db:wipe` requires confirmation because it's destructive. And `rune --help` works because the project itself has a CLI interface.
+Then things like these make sense: `db:migrate` is a namespaced command. `make:model User` has an argument. `make:model User --force` has a boolean flag. `db:fresh` requires confirmation because it's destructive. And `rune --help` works because the project itself has a CLI interface.
 
 ---
 
