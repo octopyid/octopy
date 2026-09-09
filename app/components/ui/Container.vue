@@ -1,27 +1,44 @@
 <script setup lang="ts">
-defineProps<{
-  as?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl';
-}>();
+export type ContainerSize =
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl'
+  | '4xl'
+  | '5xl'
+  | '6xl'
+  | '7xl';
+
+const props = withDefaults(
+  defineProps<{
+    as?: keyof HTMLElementTagNameMap;
+    size?: ContainerSize;
+  }>(),
+  { as: 'div', size: '7xl' },
+);
+
+// NOTE: `max-w-screen-*` was removed in Tailwind v4; viewport widths
+// now resolve through the breakpoint theme tokens.
+const sizeClasses: Record<ContainerSize, string> = {
+  sm: 'max-w-(--breakpoint-sm)',
+  md: 'max-w-(--breakpoint-md)',
+  lg: 'max-w-(--breakpoint-lg)',
+  xl: 'max-w-(--breakpoint-xl)',
+  '2xl': 'max-w-2xl',
+  '3xl': 'max-w-3xl',
+  '4xl': 'max-w-4xl',
+  '5xl': 'max-w-5xl',
+  '6xl': 'max-w-6xl',
+  '7xl': 'max-w-7xl',
+};
+
+const sizeClass = computed(() => sizeClasses[props.size]);
 </script>
 
 <template>
-  <component
-    :is="as || 'div'"
-    class="mx-auto px-4 sm:px-6 lg:px-8"
-    :class="[
-      size === 'sm' ? 'max-w-screen-sm' : '',
-      size === 'md' ? 'max-w-screen-md' : '',
-      size === 'lg' ? 'max-w-screen-lg' : '',
-      size === 'xl' ? 'max-w-screen-xl' : '',
-      size === '2xl' ? 'max-w-2xl' : '',
-      size === '3xl' ? 'max-w-3xl' : '',
-      size === '4xl' ? 'max-w-4xl' : '',
-      size === '5xl' ? 'max-w-5xl' : '',
-      size === '6xl' ? 'max-w-6xl' : '',
-      size === '7xl' || !size ? 'max-w-7xl' : '',
-    ]"
-  >
+  <component :is="as" class="mx-auto px-4 sm:px-6 lg:px-8" :class="sizeClass">
     <slot />
   </component>
 </template>
