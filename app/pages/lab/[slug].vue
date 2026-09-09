@@ -53,7 +53,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <UiContainer size="3xl" class="py-12 md:py-20">
+  <UiContainer size="7xl" class="pt-24 pb-20">
     <div v-if="pending" class="flex justify-center py-20">
       <Icon name="ph:spinner-gap-bold" size="32" class="animate-spin text-primary-500" />
     </div>
