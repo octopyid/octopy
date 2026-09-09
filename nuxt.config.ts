@@ -144,7 +144,7 @@ export default defineNuxtConfig({
       routes: [
         '/',
         '/insights',
-        '/insights/why-i-built-rune',
+        '/insights/introducing-rune',
         '/insights/hello-world',
         '/insights/laravel-scheduler-without-cron',
         '/lab',
