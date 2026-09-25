@@ -37,7 +37,7 @@ useSeoMeta({
   description: () => data.value?.project?.description || 'Open source project by Supian M.',
 });
 
-defineOgImageComponent('OctopySeo', {
+defineOgImage('OctopySeo', {
   title: () => data.value?.project?.title || 'Project',
   description: () => data.value?.project?.description || 'Open source project by Supian M.',
 });
@@ -53,12 +53,30 @@ const stats = useGithubStats(
   data.value?.project?.repo,
   data.value?.project?.isOpenSource !== false,
 );
+
+// `link` is the product website, `repo` is the GitHub slug. Some projects
+// (Rune) use the repo URL as `link`; only treat non-GitHub links as websites.
+const isGithubUrl = (url?: string | null) =>
+  !!url && /^(https?:\/\/)?(www\.)?github\.com\//i.test(url);
+
+const websiteUrl = computed(() => {
+  const link = data.value?.project?.link;
+  return link && !isGithubUrl(link) ? link : null;
+});
+
+const repoUrl = computed(() => {
+  const project = data.value?.project;
+  if (project?.repo) return `https://github.com/${project.repo}`;
+  if (project?.link && isGithubUrl(project.link)) return project.link;
+  return null;
+});
 </script>
 
 <template>
   <UiContainer size="7xl" class="pt-24 pb-20">
-    <div v-if="pending" class="flex justify-center py-20">
-      <Icon name="ph:spinner-gap-bold" size="32" class="animate-spin text-primary-500" />
+    <div v-if="pending" role="status" class="flex items-center justify-center gap-3 py-20 text-text-secondary">
+      <Icon name="ph:spinner-gap-bold" size="24" class="animate-spin text-primary-500" />
+      <p>Loading project...</p>
     </div>
 
     <article v-else-if="data" class="w-full">
@@ -100,15 +118,29 @@ const stats = useGithubStats(
           {{ data.project.description }}
         </p>
 
-        <div class="flex gap-4">
+        <div class="flex flex-wrap gap-4">
           <a
-            v-if="data.project.link"
-            :href="data.project.link"
+            v-if="websiteUrl"
+            :href="websiteUrl"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 rounded-lg bg-text-primary px-6 py-3 font-semibold text-bg shadow-sm transition-colors hover:bg-primary-500"
           >
-            <Icon name="mdi:github" size="20" /> View Repository
+            <Icon name="ph:arrow-square-out-bold" size="20" /> Visit Website
+          </a>
+          <a
+            v-if="repoUrl"
+            :href="repoUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors"
+            :class="
+              websiteUrl
+                ? 'border border-border bg-surface text-text-primary hover:border-primary-500 hover:text-primary-500'
+                : 'bg-text-primary text-bg shadow-sm hover:bg-primary-500'
+            "
+          >
+            <Icon name="mdi:github" size="20" /> GitHub
           </a>
         </div>
       </header>

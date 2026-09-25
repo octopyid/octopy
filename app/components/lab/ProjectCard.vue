@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { NuxtLink } from '#components';
+
 export interface LabProject {
   title: string;
   description: string;
@@ -19,8 +21,10 @@ const isOpenSource = computed(() => props.project.isOpenSource !== false);
 const isClickable = computed(() => isOpenSource.value || !!props.project.link);
 
 // Open source -> internal detail page; closed with link -> external tab; otherwise static.
+// NuxtLink is imported as a component object: passing its name as a string
+// leaves <component :is> unresolved and renders a dead custom element.
 const wrapper = computed(() => {
-  if (isOpenSource.value) return 'NuxtLink';
+  if (isOpenSource.value) return NuxtLink;
   if (props.project.link) return 'a';
   return 'div';
 });
@@ -28,9 +32,9 @@ const wrapper = computed(() => {
 const stats = useGithubStats(props.project.repo, isOpenSource.value);
 const projectIcon = computed(() => props.project.icon || 'ph:flask-duotone');
 const trailingIcon = computed(() => {
-  if (isOpenSource.value) return 'ph:arrow-up-right-bold';
-  if (props.project.link) return 'ph:arrow-square-out-bold';
-  return 'ph:lock-duotone';
+  if (!isOpenSource.value && props.project.link) return 'ph:arrow-square-out-bold';
+  if (!isOpenSource.value) return 'ph:lock-duotone';
+  return null;
 });
 </script>
 
@@ -45,7 +49,7 @@ const trailingIcon = computed(() => {
     class="group flex h-full flex-col rounded-xl border border-border bg-surface-raised p-6 transition-all duration-300"
     :class="[
       isClickable
-        ? 'hover:-translate-y-1 hover:border-primary-500 hover:shadow-glow'
+        ? 'hover:-translate-y-1 hover:border-primary-500 hover:shadow-md'
         : 'opacity-90',
     ]"
   >
@@ -60,6 +64,7 @@ const trailingIcon = computed(() => {
           </h3>
         </div>
         <Icon
+          v-if="trailingIcon"
           :name="trailingIcon"
           size="18"
           class="text-text-muted transition-colors group-hover:text-primary-500"
