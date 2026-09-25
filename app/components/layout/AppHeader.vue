@@ -39,7 +39,7 @@ watch(
             <ThemeSwitcher class="mr-4" />
             <button
               @click="toggleMobileMenu"
-              class="flex h-[36px] w-[36px] items-center justify-center text-text-secondary transition-colors hover:text-text-primary focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-none"
+              class="flex h-11 w-11 items-center justify-center text-text-secondary transition-colors hover:text-text-primary focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-none"
               aria-label="Toggle mobile menu"
               :aria-expanded="isMobileMenuOpen"
               aria-controls="mobile-menu"

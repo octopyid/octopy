@@ -46,7 +46,7 @@ const progress = computed(() => {
     aria-valuemin="0"
     aria-valuemax="100"
     :aria-valuenow="Math.round(progress)"
-    class="fixed top-0 left-0 z-[100] h-0.5 bg-linear-to-r from-primary-400 to-primary-600 shadow-glow transition-all duration-150 ease-out"
+    class="fixed top-0 left-0 z-[100] h-0.5 bg-primary-500 transition-all duration-150 ease-out"
     :style="{ width: `${progress}%` }"
   ></div>
 </template>

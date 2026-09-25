@@ -18,7 +18,7 @@ const services: Service[] = [
     id: 'mail',
     title: 'Enterprise Mail Servers',
     description:
-      'Deploying and managing robust self-hosted mail stacks (Mailcow, Poste.io) with strict SPF, DKIM, and DMARC configurations.',
+      'Deploying and managing self-hosted mail stacks (Mailcow, Poste.io) with strict SPF, DKIM, and DMARC configurations.',
     icon: 'ph:envelope-simple-duotone',
   },
   {
@@ -46,7 +46,7 @@ const services: Service[] = [
         <div
           v-for="service in services"
           :key="service.id"
-          class="group relative rounded-2xl border border-border bg-bg p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-glow"
+          class="group relative rounded-2xl border border-border bg-bg p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-md"
         >
           <div
             class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-interactive-muted text-primary-500"
@@ -60,7 +60,7 @@ const services: Service[] = [
 
       <div class="mt-16 flex justify-center">
         <UiButton to="/services" variant="secondary" size="md">
-          Explore All Expertise
+          View All Services
           <Icon name="ph:arrow-right-bold" aria-hidden="true" />
         </UiButton>
       </div>

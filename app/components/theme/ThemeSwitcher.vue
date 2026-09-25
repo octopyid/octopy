@@ -58,7 +58,7 @@ const themes = [
 @reference "~/assets/css/main.css";
 
 .theme-toggle {
-  @apply h-[36px] w-[36px] cursor-pointer items-center justify-center rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-raised)] text-[var(--color-text-secondary)] transition-all duration-[var(--duration-fast)] ease-[var(--ease-smooth)];
+  @apply h-11 w-11 cursor-pointer items-center justify-center rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-raised)] text-[var(--color-text-secondary)] transition-all duration-[var(--duration-fast)] ease-[var(--ease-smooth)];
 }
 .theme-toggle:hover {
   @apply border-[var(--color-interactive)] bg-[var(--color-interactive-muted)] text-[var(--color-interactive)];

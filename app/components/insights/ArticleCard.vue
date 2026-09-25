@@ -18,7 +18,7 @@ const { formatDate, toIsoDate } = useFormatDate();
 <template>
   <NuxtLink :to="article.path" class="group block h-full" v-motion-slide-visible-once-bottom>
     <article
-      class="flex h-full flex-col rounded-xl border border-border bg-surface-raised p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-glow"
+      class="flex h-full flex-col rounded-xl border border-border bg-surface-raised p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-md"
     >
       <div class="flex-grow">
         <div
@@ -55,11 +55,6 @@ const { formatDate, toIsoDate } = useFormatDate();
             {{ tag }}
           </span>
         </div>
-        <Icon
-          name="ph:arrow-right-bold"
-          class="text-text-muted transition-transform duration-300 group-hover:translate-x-1.5 group-hover:text-primary-500"
-          aria-hidden="true"
-        />
       </div>
     </article>
   </NuxtLink>

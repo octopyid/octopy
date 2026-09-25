@@ -11,6 +11,7 @@
     "oxfmt": "oxfmt ."
   },
   "dependencies": {
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
     "@nuxt/content": "^3.15.0",
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/icon": "^2.3.1",

@@ -4,11 +4,11 @@ const techList = [
   { name: 'Go', icon: 'simple-icons:go' },
   { name: 'Laravel', icon: 'simple-icons:laravel' },
   { name: 'Vue.js', icon: 'simple-icons:vuedotjs' },
-  { name: 'Nuxt', icon: 'simple-icons:nuxtdotjs' },
-  { name: 'Docker', icon: 'simple-icons:docker' },
-  { name: 'MySQL', icon: 'simple-icons:mysql' },
-  { name: 'TypeScript', icon: 'simple-icons:typescript' },
 ];
+
+// Four copies keep the track wider than ultrawide viewports now that the
+// list is short; only the first copy is exposed to assistive tech.
+const copies = 4;
 </script>
 
 <template>
@@ -18,27 +18,22 @@ const techList = [
         Core Engineering Stack
       </p>
 
-      <!-- CSS Marquee approach -->
+      <!-- CSS Marquee: pauses on hover or keyboard focus, disabled for reduced motion -->
       <div class="group relative flex overflow-x-hidden">
-        <div class="animate-marquee flex items-center space-x-12 whitespace-nowrap sm:space-x-24">
-          <div
-            v-for="tech in techList"
-            :key="tech.name"
-            class="flex items-center gap-3 text-text-secondary transition-colors hover:text-primary-500"
-          >
-            <Icon :name="tech.icon" size="32" aria-hidden="true" />
-            <span class="hidden text-lg font-medium sm:block">{{ tech.name }}</span>
-          </div>
-          <!-- Duplicate for seamless scrolling (hidden from assistive tech) -->
-          <div
-            v-for="tech in techList"
-            :key="tech.name + '-dup'"
-            aria-hidden="true"
-            class="flex items-center gap-3 text-text-secondary transition-colors hover:text-primary-500"
-          >
-            <Icon :name="tech.icon" size="32" />
-            <span class="hidden text-lg font-medium sm:block">{{ tech.name }}</span>
-          </div>
+        <div
+          class="animate-marquee flex items-center space-x-12 whitespace-nowrap motion-reduce:animate-none sm:space-x-24 group-focus-within:[animation-play-state:paused]"
+        >
+          <template v-for="copy in copies" :key="copy">
+            <div
+              v-for="tech in techList"
+              :key="`${copy}-${tech.name}`"
+              :aria-hidden="copy > 1 || undefined"
+              class="flex items-center gap-3 text-text-secondary transition-colors hover:text-primary-500"
+            >
+              <Icon :name="tech.icon" size="32" aria-hidden="true" />
+              <span class="hidden text-lg font-medium sm:block">{{ tech.name }}</span>
+            </div>
+          </template>
         </div>
       </div>
     </div>

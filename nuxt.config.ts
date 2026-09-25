@@ -98,6 +98,11 @@ export default defineNuxtConfig({
         provider: 'fontsource',
         weights: [400, 500, 600, 700, 800],
       },
+      {
+        name: 'Plus Jakarta Sans',
+        provider: 'fontsource',
+        weights: [500, 600, 700, 800],
+      },
       { name: 'Iosevka', provider: 'fontsource' },
     ],
   },

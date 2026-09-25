@@ -26,7 +26,6 @@ const handleSubmit = async () => {
     isSuccess.value = true;
     form.value = { name: '', email: '', subject: '', message: '' };
 
-    // Reset success state after a while
     clearTimeout(successTimer);
     successTimer = setTimeout(() => {
       isSuccess.value = false;
@@ -69,7 +68,7 @@ onUnmounted(() => clearTimeout(successTimer));
             name="name"
             autocomplete="name"
             required
-            placeholder="John Doe"
+            placeholder="Your Name"
           />
         </div>
         <div class="space-y-2">
@@ -81,7 +80,7 @@ onUnmounted(() => clearTimeout(successTimer));
             name="email"
             autocomplete="email"
             required
-            placeholder="john@example.com"
+            placeholder="you@example.com"
           />
         </div>
       </div>

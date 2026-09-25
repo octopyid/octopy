@@ -26,7 +26,7 @@ const { copy, copied } = useClipboard({ source: props.code });
     </div>
 
     <!-- Code Content -->
-    <!-- We reset prose margins on pre so it fills the wrapper seamlessly -->
+    <!-- We reset prose margins on pre so it fills the wrapper -->
     <pre :class="[$props.class, '!my-0 !rounded-none !border-0 !shadow-none']"><slot /></pre>
 
     <!-- Copy Button -->

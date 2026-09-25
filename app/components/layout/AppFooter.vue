@@ -6,22 +6,22 @@
         <div class="col-span-2">
           <NuxtLink to="/" class="mb-4 inline-flex items-center gap-2">
             <div
-              class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-500 text-white shadow-glow"
+              class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-500 text-white"
             >
               <Icon name="ph:code-bold" size="18" />
             </div>
             <span class="text-xl font-bold tracking-tight text-text-primary">Octopy ID</span>
           </NuxtLink>
           <p class="mt-2 max-w-md text-sm leading-relaxed text-text-secondary">
-            Crafting elegant software architectures, robust backend systems, and modern web
-            applications. Open source enthusiast and dedicated software engineer.
+            Backend systems, Linux server infrastructure, and modern web applications. Open
+            source maintainer and software engineer.
           </p>
           <div class="mt-6 flex flex-wrap items-center gap-3">
             <a
               href="https://github.com/supianidz"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-text-muted transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:text-primary-500 hover:shadow-glow"
+              class="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface text-text-muted transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:text-primary-500"
               aria-label="GitHub"
             >
               <Icon name="ph:github-logo-duotone" size="20" />
@@ -30,7 +30,7 @@
               href="https://linkedin.com/in/supianidz"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-text-muted transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:text-primary-500 hover:shadow-glow"
+              class="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface text-text-muted transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:text-primary-500"
               aria-label="LinkedIn"
             >
               <Icon name="ph:linkedin-logo-duotone" size="20" />
@@ -39,7 +39,7 @@
               href="https://wa.me/628159826697?text=Hello%20Supian,%20I%20would%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noopener noreferrer"
-              class="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-text-muted transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:text-primary-500 hover:shadow-glow"
+              class="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface text-text-muted transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:text-primary-500"
               aria-label="WhatsApp"
             >
               <Icon name="ph:whatsapp-logo-duotone" size="20" />
