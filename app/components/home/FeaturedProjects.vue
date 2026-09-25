@@ -21,8 +21,9 @@ const projects = computed(() => allProjects.value || []);
         </NuxtLink>
       </div>
 
-      <div v-if="pending" class="flex justify-center py-20">
-        <Icon name="ph:spinner-gap-bold" size="32" class="animate-spin text-primary-500" />
+      <div v-if="pending" role="status" class="flex items-center justify-center gap-3 py-20 text-text-secondary">
+        <Icon name="ph:spinner-gap-bold" size="24" class="animate-spin text-primary-500" />
+        <p>Loading projects...</p>
       </div>
       <div v-else class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <LabProjectCard v-for="project in projects" :key="project.id" :project="project" />

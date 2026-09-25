@@ -10,7 +10,7 @@ useSeoMeta({
   description: 'Technical articles, architectural thoughts, and engineering reflections.',
 });
 
-defineOgImageComponent('OctopySeo', {
+defineOgImage('OctopySeo', {
   title: 'Insights',
   description: 'Thoughts on software architecture and server infrastructure.',
 });
@@ -19,7 +19,7 @@ useSchemaOrg([
   defineWebPage({ '@type': 'Blog' }),
 ]);
 
-const { data: articles } = await useAsyncData('insights-articles', () => {
+const { data: articles, pending } = await useAsyncData('insights-articles', () => {
   return queryCollection('insights')
     .where('draft', '=', false)
     .select('title', 'description', 'date', 'tags', 'readTime', 'path')
@@ -73,7 +73,15 @@ watch(activeTag, () => {
       <!-- Main Content: Articles -->
       <div class="lg:col-span-2">
         <div
-          v-if="paginatedArticles && paginatedArticles.length > 0"
+          v-if="pending"
+          role="status"
+          class="flex items-center justify-center gap-3 py-20 text-text-secondary"
+        >
+          <Icon name="ph:spinner-gap-bold" size="24" class="animate-spin text-primary-500" />
+          <p>Loading articles...</p>
+        </div>
+        <div
+          v-else-if="paginatedArticles && paginatedArticles.length > 0"
           class="grid grid-cols-1 gap-6 md:grid-cols-2"
         >
           <InsightsArticleCard
@@ -85,7 +93,8 @@ watch(activeTag, () => {
 
         <div v-else class="rounded-xl border border-dashed border-border py-20 text-center">
           <Icon name="ph:article-duotone" size="48" class="mx-auto mb-4 text-text-muted" />
-          <p class="text-text-secondary">No insights found.</p>
+          <p class="text-text-secondary">No insights match this topic yet.</p>
+          <p class="mt-1 text-sm text-text-muted">Try another topic filter.</p>
         </div>
 
         <!-- Pagination -->
@@ -104,10 +113,10 @@ watch(activeTag, () => {
             @click="currentPage = page"
             :aria-label="`Go to page ${page}`"
             :aria-current="currentPage === page ? 'page' : undefined"
-            class="flex h-10 w-10 items-center justify-center rounded-lg text-sm font-medium transition-colors"
+            class="flex h-11 w-11 items-center justify-center rounded-lg text-sm font-medium transition-colors"
             :class="
               currentPage === page
-                ? 'bg-primary-500 text-white shadow-glow'
+                ? 'bg-primary-500 text-white shadow-sm'
                 : 'border border-border bg-surface hover:bg-surface-raised'
             "
           >
@@ -140,7 +149,7 @@ watch(activeTag, () => {
               class="rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-none"
               :class="
                 activeTag === tag
-                  ? 'border border-primary-500 bg-primary-500 text-white shadow-glow'
+                  ? 'border border-primary-500 bg-primary-500 text-white shadow-sm'
                   : 'border border-transparent bg-surface text-text-secondary hover:bg-primary-500/10 hover:text-primary-500 dark:bg-surface-raised dark:hover:bg-primary-500/10'
               "
             >

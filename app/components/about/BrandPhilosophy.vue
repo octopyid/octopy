@@ -18,7 +18,7 @@
           <p class="mb-6 text-lg leading-relaxed text-text-secondary">
             The octopus is a creature of high intelligence, adaptability, and decentralized control.
             It thrives in high-pressure environments by coordinating multiple complex systems
-            seamlessly.
+            at once.
           </p>
           <p class="text-lg leading-relaxed text-text-secondary">
             This is the exact philosophy behind Octopy ID. Whether it is provisioning secure
@@ -30,7 +30,7 @@
             We do not believe in hype-driven development. Our engineering decisions are guided by
             three uncompromising pillars:<br />
             <strong class="text-text-primary"
-              >Pragmatic Architecture, Maintainable Code, and Flawless Execution.</strong
+              >Pragmatic Architecture, Maintainable Code, and Reliable Execution.</strong
             >
           </p>
         </div>

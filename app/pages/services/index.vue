@@ -9,7 +9,7 @@ useSeoMeta({
     'Holistic infrastructure and application engineering services. Linux, Mail, and App Development.',
 });
 
-defineOgImageComponent('OctopySeo', {
+defineOgImage('OctopySeo', {
   title: 'Services & Expertise',
   description: 'Pragmatic engineering solutions, from mail servers to web apps.',
 });
@@ -44,14 +44,14 @@ const services = [
     id: 'linux',
     title: 'Linux Server Administration',
     description:
-      'Practical server management, security hardening, and straightforward deployments designed to keep your services online without the headache.',
+      'Practical server management, security hardening, and straightforward deployments designed to keep your services online without the headache. Background workers and scheduled tasks stay supervised in production.',
     icon: 'simple-icons:linux',
   },
   {
     id: 'mail',
     title: 'Enterprise Mail Servers',
     description:
-      'Deploying and managing robust self-hosted mail stacks (Mailcow, Poste.io) with strict SPF, DKIM, and DMARC configurations for ultimate deliverability.',
+      'Deploying and managing self-hosted mail stacks (Mailcow, Poste.io) with strict SPF, DKIM, and DMARC configurations for reliable deliverability.',
     icon: 'simple-icons:maildotru',
   },
   {
@@ -76,7 +76,7 @@ const services = [
       <div
         v-for="service in services"
         :key="service.id"
-        class="group relative flex h-full flex-col rounded-2xl border border-border bg-surface-raised p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-glow"
+        class="group relative flex h-full flex-col rounded-2xl border border-border bg-surface-raised p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-md"
       >
         <div
           class="mb-8 flex h-14 w-14 items-center justify-center rounded-xl border border-border bg-bg text-primary-500 transition-transform group-hover:scale-110"
@@ -96,7 +96,7 @@ const services = [
         Need a Custom Engineering Solution?
       </h2>
       <p class="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-text-secondary">
-        I believe in honesty first. Let's discuss your project—I often advise clients on
+        I believe in honesty first. Let's discuss your project. I often advise clients on
         cost-effective, practical solutions they can try before committing to custom development.
       </p>
       <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">

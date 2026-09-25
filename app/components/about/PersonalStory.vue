@@ -33,20 +33,20 @@
               <li>
                 <strong class="text-text-primary">Pragmatic Architecture:</strong> I avoid
                 over-engineering. I advise stakeholders on cost-effective, maintainable tech stacks
-                that execute flawlessly in production.
+                that execute reliably in production.
               </li>
               <li>
                 <strong class="text-text-primary">Open Source Scale:</strong> The software libraries
-                I author and maintain are actively utilized by over 125,000 developers worldwide.
+                I author and maintain are used in production by teams and developers worldwide.
               </li>
             </ul>
 
-            <p>I don't just write code; I deliver reliable, production-ready software systems.</p>
+            <p>My work ships as reliable, production-ready software systems.</p>
             <div class="mt-10">
               <a
                 href="/Supian_M_Resume.pdf"
                 target="_blank"
-                class="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary-500 px-6 text-sm font-medium text-white shadow-glow transition-colors hover:bg-primary-600 focus-visible:ring-2 focus-visible:ring-interactive focus-visible:outline-none"
+                class="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary-500 px-6 text-sm font-medium text-white shadow-sm transition-colors hover:bg-primary-600 focus-visible:ring-2 focus-visible:ring-interactive focus-visible:outline-none"
               >
                 <Icon name="ph:file-pdf-duotone" size="20" />
                 Download Resume (PDF)

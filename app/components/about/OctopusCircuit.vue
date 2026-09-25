@@ -64,7 +64,6 @@ const arms = [
         />
       </g>
 
-      <!-- Glowing Nodes (Pulsing) -->
       <g class="fill-primary-500">
         <circle
           v-for="(arm, index) in arms"
@@ -72,8 +71,6 @@ const arms = [
           :cx="arm.endX"
           :cy="arm.endY"
           r="4"
-          class="animate-pulse"
-          :style="{ animationDelay: arm.delay }"
         />
       </g>
     </svg>

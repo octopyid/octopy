@@ -4,7 +4,7 @@ const experiences = [
     date: '2019 · Present',
     role: 'Freelance Engineer & Consultant',
     comp: 'Various Independent Projects',
-    desc: 'Operating on a 100% remote, transparent workflow alongside my full-time commitments. To guarantee quality and reliability, I always provide clients with realistic, padded timelines—ensuring every project gets the dedicated attention it deserves without missing deadlines.',
+    desc: 'Operating on a 100% remote, transparent workflow alongside my full-time commitments. To guarantee quality and reliability, I always provide clients with realistic, padded timelines, ensuring every project gets the dedicated attention it deserves without missing deadlines.',
     logo: '', // Fallback to icon
   },
   {
@@ -18,7 +18,7 @@ const experiences = [
     date: 'August 2022 · December 2023',
     role: 'Back-End Engineer',
     comp: 'Regional Water Utility (PTAM Intan Banjar)',
-    desc: 'Building and optimizing systems for clean water payment processing, installation requests, and customer complaint management, ensuring seamless and efficient service delivery.',
+    desc: 'Building and optimizing systems for clean water payment processing, installation requests, and customer complaint management for reliable service delivery.',
     logo: '/images/company/3.webp',
   },
   {
@@ -64,14 +64,14 @@ const experiences = [
           <!-- Timeline Node -->
           <div
             aria-hidden="true"
-            class="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-surface-raised shadow-sm transition-all duration-300 group-hover:border-primary-500 group-hover:shadow-glow md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2"
+            class="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-surface-raised shadow-sm transition-all duration-300 group-hover:border-primary-500 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2"
           >
             <div class="h-2 w-2 rounded-full bg-primary-500"></div>
           </div>
 
           <!-- Content Card -->
           <div
-            class="w-[calc(100%-4rem)] rounded-2xl border border-border bg-surface-raised p-6 transition-all duration-300 group-hover:bg-surface hover:-translate-y-1 hover:border-primary-500 hover:shadow-glow md:w-[calc(50%-2.5rem)]"
+            class="w-[calc(100%-4rem)] rounded-2xl border border-border bg-surface-raised p-6 transition-all duration-300 group-hover:bg-surface hover:-translate-y-1 hover:border-primary-500 hover:shadow-md md:w-[calc(50%-2.5rem)]"
           >
             <div class="mb-4 flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
               <div>
@@ -86,10 +86,9 @@ const experiences = [
                 :src="exp.logo"
                 :alt="`${exp.comp} logo`"
                 width="48"
-                height="48"
                 loading="lazy"
                 decoding="async"
-                class="h-12 w-12 shrink-0 rounded-xl border border-border/50 bg-white object-contain p-1 shadow-sm"
+                class="h-12 w-12 shrink-0 rounded-xl border border-border/50 bg-white object-contain p-1.5 shadow-sm"
               />
               <div
                 v-else

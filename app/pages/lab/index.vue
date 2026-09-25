@@ -8,7 +8,7 @@ useSeoMeta({
   description: 'Open source experiments and libraries by Supian M.',
 });
 
-defineOgImageComponent('OctopySeo', {
+defineOgImage('OctopySeo', {
   title: 'The Lab',
   description: 'Open source experiments and libraries.',
 });
@@ -74,8 +74,9 @@ const filteredProjects = computed(() => {
       </button>
     </div>
 
-    <div v-if="pending" class="flex justify-center py-20">
-      <Icon name="ph:spinner-gap-bold" size="32" class="animate-spin text-primary-500" />
+    <div v-if="pending" role="status" class="flex items-center justify-center gap-3 py-20 text-text-secondary">
+      <Icon name="ph:spinner-gap-bold" size="24" class="animate-spin text-primary-500" />
+      <p>Loading projects...</p>
     </div>
 
     <div
@@ -87,7 +88,8 @@ const filteredProjects = computed(() => {
 
     <div v-else class="rounded-xl border border-dashed border-border py-20 text-center">
       <Icon name="ph:flask-duotone" size="48" class="mx-auto mb-4 text-text-muted" />
-      <p class="text-text-secondary">No projects found.</p>
+      <p class="text-text-secondary">No projects match this language yet.</p>
+      <p class="mt-1 text-sm text-text-muted">Try another language filter.</p>
     </div>
   </UiContainer>
 </template>
