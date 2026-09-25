@@ -81,12 +81,23 @@ const repoUrl = computed(() => {
 
     <article v-else-if="data" class="w-full">
       <header class="mb-12" v-if="data.project">
-        <NuxtLink
-          to="/lab"
-          class="mb-8 inline-flex items-center gap-2 text-sm font-medium text-text-muted transition-colors hover:text-text-primary"
-        >
-          <Icon name="ph:arrow-left-bold" /> Back to Lab
-        </NuxtLink>
+        <div class="mb-8 flex items-center justify-between gap-4">
+          <NuxtLink
+            to="/lab"
+            class="inline-flex items-center gap-2 text-sm font-medium text-text-muted transition-colors hover:text-text-primary"
+          >
+            <Icon name="ph:arrow-left-bold" /> Back to Lab
+          </NuxtLink>
+          <a
+            v-if="repoUrl"
+            :href="repoUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex shrink-0 items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2 text-sm font-semibold text-text-primary transition-colors hover:border-primary-500 hover:text-primary-500"
+          >
+            <Icon name="mdi:github" size="18" /> GitHub
+          </a>
+        </div>
 
         <div
           class="mb-6 flex items-center gap-4 text-sm font-medium tracking-wider text-text-muted uppercase"
@@ -118,29 +129,14 @@ const repoUrl = computed(() => {
           {{ data.project.description }}
         </p>
 
-        <div class="flex flex-wrap gap-4">
+        <div v-if="websiteUrl" class="flex flex-wrap gap-4">
           <a
-            v-if="websiteUrl"
             :href="websiteUrl"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 rounded-lg bg-text-primary px-6 py-3 font-semibold text-bg shadow-sm transition-colors hover:bg-primary-500"
           >
             <Icon name="ph:arrow-square-out-bold" size="20" /> Visit Website
-          </a>
-          <a
-            v-if="repoUrl"
-            :href="repoUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-colors"
-            :class="
-              websiteUrl
-                ? 'border border-border bg-surface text-text-primary hover:border-primary-500 hover:text-primary-500'
-                : 'bg-text-primary text-bg shadow-sm hover:bg-primary-500'
-            "
-          >
-            <Icon name="mdi:github" size="20" /> GitHub
           </a>
         </div>
       </header>
