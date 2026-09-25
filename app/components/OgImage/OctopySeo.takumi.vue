@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // First-party OG image template (Satori-compatible: flexbox + inline styles only).
-// Used via `defineOgImageComponent('OctopySeo', { title, description })`.
+// Used via `defineOgImage('OctopySeo', { title, description })`.
 withDefaults(
   defineProps<{
     title?: string;
