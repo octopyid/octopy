@@ -6,20 +6,16 @@
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-hand: "Caveat", cursive;
 
-  --color-abyss-950: #01030a;
-  --color-abyss-900: #020a16;
-  --color-twilight-800: #072033;
-  --color-twilight-700: #0b3049;
-  --color-glow-200: #a7f3e4;
-  --color-glow-300: #7df0d8;
-  --color-glow-400: #4fe3c1;
-  --color-glow-500: #2bcfae;
-  --color-foam-50: #f4faf9;
-  --color-foam-100: #e9f4f2;
-  --color-foam-200: #d3e9e5;
-  --color-ink-800: #0c2027;
-  --color-ink-900: #071418;
+  --color-paper: #f3edde;
+  --color-paper-deep: #e7ddc4;
+  --color-card: #faf6ea;
+  --color-ink: #1c1a16;
+  --color-ink-soft: #4a453b;
+  --color-ink-faint: #7d7462;
+  --color-marker: #c23a28;
+  --color-pen: #274e9e;
 }
 
 html {
@@ -27,79 +23,80 @@ html {
 }
 
 body {
-  background-color: var(--color-abyss-950);
-  color: #fff;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--color-glow-400);
-  color: var(--color-abyss-950);
+  background: var(--color-marker);
+  color: var(--color-paper);
+}
+
+/* Film grain over everything — the tactile bit */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Faint workshop grid */
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgb(28 26 22 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(28 26 22 / 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* Masking tape strip */
+.tape {
+  position: absolute;
+  width: 96px;
+  height: 28px;
+  background: linear-gradient(to bottom, rgb(231 218 183 / 0.92), rgb(221 206 165 / 0.92));
+  box-shadow: 0 1px 3px rgb(28 26 22 / 0.14);
+}
+
+/* Rubber stamp label */
+.stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  border: 2px solid currentColor;
+  border-radius: 3px;
+  padding: 0.42rem 0.9rem 0.36rem 1.15rem;
+  transform: rotate(-3deg);
+  opacity: 0.94;
+}
+
+/* Index card */
+.work-card {
+  background-color: var(--color-card);
+  border: 1px solid rgb(28 26 22 / 0.14);
+  box-shadow:
+    0 1px 2px rgb(28 26 22 / 0.06),
+    0 12px 32px -12px rgb(28 26 22 / 0.18);
 }
 
 /* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(26px);
   transition:
-    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 .reveal.in {
   opacity: 1;
   transform: none;
-}
-
-/* Depth meter adapts over the light surface section */
-#depth-meter {
-  color: rgb(255 255 255 / 0.55);
-  transition: color 0.5s ease;
-}
-#depth-meter .meter-track {
-  background: rgb(255 255 255 / 0.18);
-  transition: background 0.5s ease;
-}
-#depth-meter.on-surface {
-  color: rgb(7 20 24 / 0.55);
-}
-#depth-meter.on-surface .meter-track {
-  background: rgb(7 20 24 / 0.15);
-}
-#depth-meter.on-surface #depth-dot {
-  background: #0e7c86;
-  box-shadow: 0 0 12px 2px rgb(14 124 134 / 0.5);
-}
-
-/* The lure — anglerfish glow */
-@keyframes lure-pulse {
-  0%,
-  100% {
-    opacity: 0.45;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.12);
-  }
-}
-.lure-halo {
-  animation: lure-pulse 3.2s ease-in-out infinite;
-}
-
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-18px);
-  }
-}
-.float-slow {
-  animation: float-slow 9s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -109,9 +106,5 @@ body {
   .reveal {
     opacity: 1 !important;
     transform: none !important;
-  }
-  .lure-halo,
-  .float-slow {
-    animation: none !important;
   }
 }

@@ -1,7 +1,5 @@
 ---
 import "../styles/global.css";
-import MarineSnow from "../components/MarineSnow.astro";
-import DepthMeter from "../components/DepthMeter.astro";
 
 const title = "Octopy — Independent Software Studio";
 const description =
@@ -18,31 +16,35 @@ const description =
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta name="theme-color" content="#01030a" />
+    <meta name="theme-color" content="#f3edde" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23071318'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='%234fe3c1' font-family='Georgia'%3EO%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%231c1a16'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='%23f3edde' font-family='Georgia'%3EO%3C/text%3E%3C/svg%3E"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <MarineSnow />
-    <DepthMeter />
+    <div class="grain" aria-hidden="true"></div>
 
-    <nav class="fixed inset-x-0 top-0 z-50 text-white mix-blend-difference">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-        <a href="#surface" class="font-display text-xl font-semibold tracking-tight">Octopy</a>
-        <div
-          class="hidden items-center gap-8 font-mono text-[11px] tracking-[0.22em] uppercase sm:flex"
+    <nav
+      class="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-paper/85 backdrop-blur-md"
+    >
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+        <a href="#bench" class="font-display text-xl font-semibold tracking-tight text-ink"
+          >Octopy</a
         >
-          <a href="#twilight" class="opacity-70 transition-opacity hover:opacity-100">Products</a>
-          <a href="#midnight" class="opacity-70 transition-opacity hover:opacity-100">Founder</a>
-          <a href="#abyss" class="opacity-70 transition-opacity hover:opacity-100">Contact</a>
+        <div
+          class="hidden items-center gap-8 font-mono text-[11px] tracking-[0.22em] text-ink-soft uppercase sm:flex"
+        >
+          <a href="#bench" class="transition-colors hover:text-marker">Bench</a>
+          <a href="#work" class="transition-colors hover:text-marker">Work</a>
+          <a href="#maker" class="transition-colors hover:text-marker">Maker</a>
+          <a href="#contact" class="transition-colors hover:text-marker">Contact</a>
         </div>
       </div>
     </nav>
@@ -52,32 +54,6 @@ const description =
     </main>
 
     <script>
-      // Depth gauge + scroll reveal
-      const meter = document.getElementById("depth-meter");
-      const dot = document.getElementById("depth-dot");
-      const zoneEl = document.getElementById("depth-zone");
-      const valueEl = document.getElementById("depth-value");
-      const MAX_DEPTH = 10935; // Mariana Trench, in meters
-      const zones = [
-        { name: "The Surface", until: 200 },
-        { name: "Twilight Zone", until: 1000 },
-        { name: "Midnight Zone", until: 4000 },
-        { name: "The Abyss", until: MAX_DEPTH },
-      ];
-
-      function onScroll() {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-        const depth = Math.round(p * MAX_DEPTH);
-        if (valueEl) valueEl.textContent = `\u2212${depth.toLocaleString("en-US")} m`;
-        if (dot) dot.style.top = `${p * 100}%`;
-        const zone = zones.find((z) => depth <= z.until) ?? zones[zones.length - 1];
-        if (zoneEl && zoneEl.textContent !== zone.name) zoneEl.textContent = zone.name;
-        if (meter) meter.classList.toggle("on-surface", window.scrollY < window.innerHeight * 0.55);
-      }
-      window.addEventListener("scroll", onScroll, { passive: true });
-      onScroll();
-
       const io = new IntersectionObserver(
         (entries) => {
           for (const e of entries) {
