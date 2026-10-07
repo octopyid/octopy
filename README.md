@@ -1,75 +1,22 @@
-# Nuxt Minimal Starter
+# Octopy — octopy.dev
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Company profile for **Octopy**, an independent software studio. A single-page deep-sea
+descent: scroll from the surface down to the abyss.
 
-## Setup
+Built with [Astro](https://astro.build), [Tailwind CSS v4](https://tailwindcss.com),
+and [Phosphor Icons](https://phosphoricons.com).
 
-Make sure to install dependencies:
+## Develop
 
-```bash
-# npm
+```sh
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Build
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+```sh
+npm run build   # outputs to dist/
 ```
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+The site is fully static — deploy `dist/` anywhere (Cloudflare Pages, Dokploy, plain nginx).
