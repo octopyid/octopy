@@ -1,0 +1,58 @@
+---
+// 05 — Outlook. Forward-looking statements, with the customary disclaimer.
+const items = [
+  {
+    n: "i",
+    text: "Guide Poka Premium through Google Play review and into the hands of its first paying users.",
+  },
+  {
+    n: "ii",
+    text: "Move Tako from lab experiment toward something production-grade.",
+  },
+  {
+    n: "iii",
+    text: "Keep maintaining laravel-impersonate and the Filament plugins — maintenance is a feature.",
+  },
+  {
+    n: "iv",
+    text: "Publish field notes when there is something worth saying. No content calendar.",
+  },
+  {
+    n: "v",
+    text: "Stay independent. One person, no assembly line, for as long as it works.",
+  },
+];
+---
+<section id="outlook" class="relative border-t border-ink/10 bg-paper-deep/40">
+  <div class="mx-auto max-w-6xl px-5 py-20 md:py-28">
+    <p class="reveal font-mono text-[11px] tracking-[0.3em] text-ink-faint uppercase">
+      05 &mdash; Outlook
+    </p>
+    <h2
+      class="reveal mt-6 font-display text-4xl font-medium tracking-tight text-ink md:text-5xl"
+      style="--reveal-delay: 80ms"
+    >
+      Forward-looking <em class="font-light">statements.</em>
+    </h2>
+
+    <ol class="mt-10 max-w-3xl">
+      {
+        items.map((item, i) => (
+          <li
+            class="reveal flex gap-6 border-b border-ink/10 py-6"
+            style={`--reveal-delay: ${i * 70}ms`}
+          >
+            <span class="font-display text-2xl text-ledger italic">{item.n}.</span>
+            <p class="text-lg leading-relaxed text-ink-soft">{item.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="reveal mt-10 max-w-3xl font-mono text-[11px] leading-relaxed text-ink-faint">
+      * Forward-looking statements are subject to change without notice. Past performance
+      &mdash; ten quiet years of shipping &mdash; is no guarantee of future results, but it
+      is a decent hint.
+    </p>
+  </div>
+</section>

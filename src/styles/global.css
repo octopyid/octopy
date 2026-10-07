@@ -6,16 +6,17 @@
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  --font-hand: "Caveat", cursive;
 
-  --color-paper: #f3edde;
-  --color-paper-deep: #e7ddc4;
-  --color-card: #faf6ea;
-  --color-ink: #1c1a16;
-  --color-ink-soft: #4a453b;
-  --color-ink-faint: #7d7462;
-  --color-marker: #c23a28;
-  --color-pen: #274e9e;
+  --color-paper: #faf9f5;
+  --color-paper-deep: #f0ece1;
+  --color-ink: #161310;
+  --color-ink-soft: #4c463c;
+  --color-ink-faint: #8a8172;
+  --color-ledger: #1d4d3a;
+  /* reused accent hooks */
+  --color-marker: #1d4d3a;
+  --color-pen: #1d4d3a;
+  --color-card: #faf9f5;
 }
 
 html {
@@ -31,58 +32,34 @@ body {
 }
 
 ::selection {
-  background: var(--color-marker);
+  background: var(--color-ledger);
   color: var(--color-paper);
 }
 
-/* Film grain over everything — the tactile bit */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 70;
-  pointer-events: none;
-  opacity: 0.055;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+/* Thick annual-report rule */
+.rule-double {
+  border-top: 1px solid var(--color-ink);
+  position: relative;
 }
-
-/* Faint workshop grid */
-.blueprint-grid {
-  background-image:
-    linear-gradient(to right, rgb(28 26 22 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(28 26 22 / 0.05) 1px, transparent 1px);
-  background-size: 36px 36px;
-}
-
-/* Masking tape strip */
-.tape {
+.rule-double::after {
+  content: "";
   position: absolute;
-  width: 96px;
-  height: 28px;
-  background: linear-gradient(to bottom, rgb(231 218 183 / 0.92), rgb(221 206 165 / 0.92));
-  box-shadow: 0 1px 3px rgb(28 26 22 / 0.14);
+  top: 4px;
+  left: 0;
+  right: 0;
+  border-top: 3px solid var(--color-ink);
 }
 
-/* Rubber stamp label */
-.stamp {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  border: 2px solid currentColor;
-  border-radius: 3px;
-  padding: 0.42rem 0.9rem 0.36rem 1.15rem;
-  transform: rotate(-3deg);
-  opacity: 0.94;
+/* Dotted leader for the table of contents */
+.toc-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
 }
-
-/* Index card */
-.work-card {
-  background-color: var(--color-card);
-  border: 1px solid rgb(28 26 22 / 0.14);
-  box-shadow:
-    0 1px 2px rgb(28 26 22 / 0.06),
-    0 12px 32px -12px rgb(28 26 22 / 0.18);
+.toc-leader {
+  flex: 1;
+  border-bottom: 1px dotted rgb(22 19 16 / 0.35);
+  transform: translateY(-4px);
 }
 
 /* Scroll reveal */
@@ -128,9 +105,9 @@ body {
   margin: 1.3rem 0;
 }
 .prose-bench a {
-  color: var(--color-pen);
+  color: var(--color-ledger);
   text-decoration: underline;
-  text-decoration-color: rgb(39 78 158 / 0.4);
+  text-decoration-color: rgb(29 77 58 / 0.4);
   text-underline-offset: 3px;
 }
 .prose-bench a:hover {
@@ -141,8 +118,8 @@ body {
   font-weight: 600;
 }
 .prose-bench blockquote {
-  border-left: 3px solid var(--color-marker);
-  background: rgb(28 26 22 / 0.04);
+  border-left: 3px solid var(--color-ledger);
+  background: rgb(22 19 16 / 0.04);
   margin: 1.75rem 0;
   padding: 1rem 1.4rem;
   font-style: italic;
@@ -166,7 +143,7 @@ body {
   margin: 0.5rem 0;
 }
 .prose-bench li::marker {
-  color: var(--color-marker);
+  color: var(--color-ledger);
 }
 .prose-bench pre {
   background: var(--color-ink);
@@ -187,14 +164,14 @@ body {
 .prose-bench :not(pre) > code {
   font-family: var(--font-mono);
   font-size: 0.88em;
-  background: rgb(28 26 22 / 0.07);
+  background: rgb(22 19 16 / 0.07);
   padding: 0.15em 0.45em;
   border-radius: 4px;
   color: var(--color-ink);
 }
 .prose-bench hr {
   border: none;
-  border-top: 1px dashed rgb(28 26 22 / 0.2);
+  border-top: 1px dashed rgb(22 19 16 / 0.2);
   margin: 2.5rem 0;
 }
 

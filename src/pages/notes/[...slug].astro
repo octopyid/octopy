@@ -29,11 +29,11 @@ function fmt(d: Date) {
       </a>
 
       <p
-        class="reveal mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] tracking-[0.2em] text-ink-faint uppercase"
+        class="reveal mt-8 font-mono text-[11px] tracking-[0.2em] text-ink-faint uppercase"
         style="--reveal-delay: 80ms"
       >
-        <span>{fmt(note.data.date)}</span>
-        {note.data.readTime && <span>&middot; {note.data.readTime} min read</span>}
+        Filed {fmt(note.data.date)}
+        {note.data.readTime && ` · ${note.data.readTime} min read`}
       </p>
 
       <h1
@@ -52,17 +52,17 @@ function fmt(d: Date) {
         </p>
       )}
 
-      <hr class="reveal my-10 border-t border-dashed border-ink/20" style="--reveal-delay: 240ms" />
+      <hr class="reveal my-10 border-t border-ink/20" style="--reveal-delay: 240ms" />
 
       <article class="reveal prose-bench" style="--reveal-delay: 280ms">
         <Content />
       </article>
 
       <div class="reveal mt-14 flex items-center justify-between border-t border-ink/15 pt-8" style="--reveal-delay: 320ms">
-        <p class="font-hand text-2xl text-ink-faint">&mdash; S.</p>
+        <p class="font-display text-xl text-ink italic">&mdash; S.</p>
         <a
           href="/notes"
-          class="inline-flex items-center gap-2 font-mono text-sm text-ink underline decoration-marker/60 decoration-2 underline-offset-4 transition-colors hover:text-marker"
+          class="inline-flex items-center gap-2 font-mono text-sm text-ink underline decoration-ledger/60 decoration-2 underline-offset-4 transition-colors hover:text-ledger"
         >
           More notes <i class="ph ph-arrow-right"></i>
         </a>

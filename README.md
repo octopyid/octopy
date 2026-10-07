@@ -1,13 +1,13 @@
 # Octopy — octopy.dev
 
-Company profile for **Octopy**, an independent software studio. Concept: *the workbench* —
-a warm, analog workshop. Paper texture, taped index cards, rubber stamps, and four
-stations: the bench, the work, the craftsperson, the work order.
+Company profile for **Octopy**, an independent software studio. Concept: *annual report* —
+the studio presented as its own yearly report. Cover, contents, letter from the founder,
+by the numbers, holdings, open source, outlook.
 
 Built with [Astro](https://astro.build), [Tailwind CSS v4](https://tailwindcss.com),
 and [Phosphor Icons](https://phosphoricons.com).
 
-Previous concept (deep-sea descent) is archived on the `archive/deep-sea` branch.
+Previous concepts are archived: `archive/deep-sea`, `archive/workbench`.
 
 ## Develop
 

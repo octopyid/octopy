@@ -1,0 +1,78 @@
+---
+// 04 — Open Source. The packages, listed like line items.
+const rows = [
+  {
+    name: "laravel-impersonate",
+    desc: "Log in as any user in Laravel apps.",
+    href: "https://github.com/octopyid/laravel-impersonate",
+  },
+  {
+    name: "rune",
+    desc: "CLI-first task runner. Tasks as commands, not shell recipes.",
+    href: "https://github.com/octopyid/rune",
+  },
+  {
+    name: "filament-palette",
+    desc: "Custom color palettes for FilamentPHP.",
+    href: "https://github.com/octopyid/filament-palette",
+  },
+  {
+    name: "filament-tabify",
+    desc: "Tabbed widgets for Filament dashboards.",
+    href: "https://github.com/octopyid/filament-tabify",
+  },
+  {
+    name: "laravel-inotify",
+    desc: "Filesystem watcher for Laravel.",
+    href: "https://github.com/octopyid/laravel-inotify",
+  },
+  {
+    name: "OctopyFramework",
+    desc: "Lightweight PHP framework, Laravel look-alike. Where it all started.",
+    href: "https://github.com/octopyid/OctopyFramework",
+  },
+];
+---
+<section id="opensource" class="relative border-t border-ink/10">
+  <div class="mx-auto max-w-6xl px-5 py-20 md:py-28">
+    <p class="reveal font-mono text-[11px] tracking-[0.3em] text-ink-faint uppercase">
+      04 &mdash; Open Source
+    </p>
+    <h2
+      class="reveal mt-6 font-display text-4xl font-medium tracking-tight text-ink md:text-5xl"
+      style="--reveal-delay: 80ms"
+    >
+      Given <em class="font-light">away.</em>
+    </h2>
+    <p class="reveal mt-5 max-w-xl leading-relaxed text-ink-soft" style="--reveal-delay: 140ms">
+      A selection of packages published under the octopyid organization. Free to use, maintained
+      on nights and weekends.
+    </p>
+
+    <div class="mt-10 border-t border-ink/15">
+      {
+        rows.map((row, i) => (
+          <a
+            href={row.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="reveal group flex items-baseline justify-between gap-6 border-b border-ink/10 py-5"
+            style={`--reveal-delay: ${i * 50}ms`}
+          >
+            <div class="toc-row flex-1">
+              <p class="font-mono text-[15px] text-ink transition-colors group-hover:text-ledger md:text-base">
+                {row.name}
+              </p>
+              <span class="toc-leader hidden sm:block" aria-hidden="true" />
+              <p class="hidden text-sm text-ink-soft md:block">{row.desc}</p>
+            </div>
+            <i class="ph ph-arrow-up-right shrink-0 text-lg text-ink-faint transition-all duration-300 group-hover:-translate-y-0.5 group-hover:text-ledger" />
+          </a>
+        ))
+      }
+    </div>
+    <p class="reveal mt-6 font-mono text-[11px] text-ink-faint">
+      Full ledger at <span class="text-ink">github.com/octopyid</span>
+    </p>
+  </div>
+</section>
