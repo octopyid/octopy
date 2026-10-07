@@ -64,7 +64,10 @@ const description =
             }
           }
         },
-        { threshold: 0.12 },
+        // threshold 0: fires as soon as any pixel is visible. A ratio-based
+        // threshold never fires for elements taller than the viewport
+        // (e.g. long articles on mobile) — leaving them invisible forever.
+        { threshold: 0 },
       );
       document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
     </script>
