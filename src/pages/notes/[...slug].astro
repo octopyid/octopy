@@ -1,0 +1,72 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes");
+  return notes.map((note) => ({
+    params: { slug: note.id.replace(/\.md$/, "") },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+
+function fmt(d: Date) {
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
+---
+
+<BaseLayout>
+  <section class="relative">
+    <div class="mx-auto max-w-3xl px-5 pt-36 pb-24 md:pt-44">
+      <a
+        href="/notes"
+        class="reveal inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-ink-faint uppercase transition-colors hover:text-ink"
+      >
+        <i class="ph ph-arrow-left"></i> All notes
+      </a>
+
+      <p
+        class="reveal mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] tracking-[0.2em] text-ink-faint uppercase"
+        style="--reveal-delay: 80ms"
+      >
+        <span>{fmt(note.data.date)}</span>
+        {note.data.readTime && <span>&middot; {note.data.readTime} min read</span>}
+      </p>
+
+      <h1
+        class="reveal mt-5 font-display text-4xl leading-tight font-medium tracking-tight text-ink md:text-5xl"
+        style="--reveal-delay: 140ms"
+      >
+        {note.data.title}
+      </h1>
+
+      {note.data.description && (
+        <p
+          class="reveal mt-5 text-lg leading-relaxed text-ink-soft"
+          style="--reveal-delay: 200ms"
+        >
+          {note.data.description}
+        </p>
+      )}
+
+      <hr class="reveal my-10 border-t border-dashed border-ink/20" style="--reveal-delay: 240ms" />
+
+      <article class="reveal prose-bench" style="--reveal-delay: 280ms">
+        <Content />
+      </article>
+
+      <div class="reveal mt-14 flex items-center justify-between border-t border-ink/15 pt-8" style="--reveal-delay: 320ms">
+        <p class="font-hand text-2xl text-ink-faint">&mdash; S.</p>
+        <a
+          href="/notes"
+          class="inline-flex items-center gap-2 font-mono text-sm text-ink underline decoration-marker/60 decoration-2 underline-offset-4 transition-colors hover:text-marker"
+        >
+          More notes <i class="ph ph-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

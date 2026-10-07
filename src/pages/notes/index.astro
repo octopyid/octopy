@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const notes = (await getCollection("notes")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+function fmt(d: Date) {
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
+---
+
+<BaseLayout>
+  <section class="relative">
+    <div class="mx-auto max-w-4xl px-5 pt-36 pb-24 md:pt-44">
+      <p
+        class="reveal flex items-center gap-3 font-mono text-[11px] tracking-[0.3em] text-ink-faint uppercase"
+      >
+        <span class="inline-block h-px w-10 bg-ink/30"></span>
+        Octopy &mdash; Field notes
+      </p>
+      <h1
+        class="reveal mt-6 font-display text-4xl font-medium tracking-tight text-ink md:text-6xl"
+        style="--reveal-delay: 90ms"
+      >
+        Notes from <em class="font-light">the bench.</em>
+      </h1>
+      <p
+        class="reveal mt-5 max-w-xl leading-relaxed text-ink-soft"
+        style="--reveal-delay: 160ms"
+      >
+        Occasional writing on building software and running servers. No schedule, no
+        newsletter &mdash; just notes worth keeping.
+      </p>
+
+      <div class="mt-14 space-y-6">
+        {
+          notes.map((note, i) => (
+            <a
+              href={`/notes/${note.id.replace(/\.md$/, "")}`}
+              class="reveal work-card group relative block p-7 transition-transform duration-300 hover:-translate-y-1 md:p-8"
+              style={`--reveal-delay: ${i * 100}ms`}
+            >
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] tracking-[0.2em] text-ink-faint uppercase">
+                <span>{fmt(note.data.date)}</span>
+                {note.data.readTime && <span>&middot; {note.data.readTime} min read</span>}
+                {note.data.tags?.slice(0, 3).map((t) => (
+                  <span class="rounded-sm border border-ink/12 px-2 py-0.5 normal-case tracking-normal">
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <h2 class="mt-4 font-display text-2xl font-medium tracking-tight text-ink transition-colors group-hover:text-marker md:text-3xl">
+                {note.data.title}
+              </h2>
+              {note.data.description && (
+                <p class="mt-3 leading-relaxed text-ink-soft">{note.data.description}</p>
+              )}
+              <p class="mt-5 inline-flex items-center gap-2 font-mono text-sm text-ink">
+                Read the note <i class="ph ph-arrow-right transition-transform duration-300 group-hover:translate-x-1" />
+              </p>
+            </a>
+          ))
+        }
+      </div>
+
+      {notes.length === 0 && (
+        <p class="mt-14 font-mono text-sm text-ink-faint">No notes pinned yet.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>

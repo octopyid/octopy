@@ -99,6 +99,105 @@ body {
   transform: none;
 }
 
+/* Article typography — field notes */
+.prose-bench {
+  color: var(--color-ink-soft);
+  line-height: 1.85;
+  font-size: 1.05rem;
+}
+.prose-bench > *:first-child {
+  margin-top: 0;
+}
+.prose-bench h2 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-size: 1.7rem;
+  line-height: 1.3;
+  margin: 2.75rem 0 1rem;
+}
+.prose-bench h3 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  font-weight: 500;
+  font-size: 1.35rem;
+  margin: 2.25rem 0 0.75rem;
+}
+.prose-bench p {
+  margin: 1.3rem 0;
+}
+.prose-bench a {
+  color: var(--color-pen);
+  text-decoration: underline;
+  text-decoration-color: rgb(39 78 158 / 0.4);
+  text-underline-offset: 3px;
+}
+.prose-bench a:hover {
+  color: var(--color-ink);
+}
+.prose-bench strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+.prose-bench blockquote {
+  border-left: 3px solid var(--color-marker);
+  background: rgb(28 26 22 / 0.04);
+  margin: 1.75rem 0;
+  padding: 1rem 1.4rem;
+  font-style: italic;
+  color: var(--color-ink);
+}
+.prose-bench blockquote p {
+  margin: 0.5rem 0;
+}
+.prose-bench ul,
+.prose-bench ol {
+  margin: 1.3rem 0;
+  padding-left: 1.5rem;
+}
+.prose-bench ul {
+  list-style: disc;
+}
+.prose-bench ol {
+  list-style: decimal;
+}
+.prose-bench li {
+  margin: 0.5rem 0;
+}
+.prose-bench li::marker {
+  color: var(--color-marker);
+}
+.prose-bench pre {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 1.3rem 1.4rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+.prose-bench pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+.prose-bench :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: rgb(28 26 22 / 0.07);
+  padding: 0.15em 0.45em;
+  border-radius: 4px;
+  color: var(--color-ink);
+}
+.prose-bench hr {
+  border: none;
+  border-top: 1px dashed rgb(28 26 22 / 0.2);
+  margin: 2.5rem 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
