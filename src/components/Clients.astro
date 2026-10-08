@@ -1,0 +1,93 @@
+---
+// Clients — selected work, on the record.
+const clients = [
+  {
+    logo: "/images/intan-banjar.webp",
+    name: "PDAM Intan Banjar",
+    tag: "Water utility · South Kalimantan",
+    desc: "Full backend for the customer Android app: bill payments, new meter registration, issue reporting — plus server provisioning, mail service, and hardening.",
+    href: "https://www.intanbanjar.id/",
+    label: "intanbanjar.id",
+  },
+  {
+    logo: "/images/ukpbj.webp",
+    name: "UKPBJ Hulu Sungai Selatan",
+    tag: "Government procurement",
+    desc: "SIOPEN — a marketplace for the regency's goods-and-services procurement, easing transactions between local government and SMEs.",
+    href: "https://siopen.hulusungaiselatankab.go.id",
+    label: "siopen.hulusungaiselatankab.go.id",
+  },
+  {
+    logo: "/images/ukpbj.webp",
+    name: "UKPBJ Kab. Balangan",
+    tag: "Government procurement",
+    desc: "Second district running the SIOPEN procurement marketplace — same platform, new regency.",
+    href: "https://siopen.balangankab.go.id",
+    label: "siopen.balangankab.go.id",
+  },
+];
+---
+<section id="clients" class="relative bg-paper-deep/40">
+  <div class="relative z-10 mx-auto max-w-6xl px-5 py-24 md:py-32">
+    <p
+      class="reveal flex items-center gap-3 font-mono text-[11px] tracking-[0.3em] text-ink-faint uppercase"
+    >
+      <span class="inline-block h-px w-10 bg-ink/30"></span>
+      Station 05 &mdash; Selected work
+    </p>
+    <h2
+      class="reveal mt-6 font-display text-4xl font-medium tracking-tight text-ink md:text-6xl"
+      style="--reveal-delay: 90ms"
+    >
+      On the <em class="font-light">record.</em>
+    </h2>
+    <p
+      class="reveal mt-5 max-w-xl leading-relaxed text-ink-soft"
+      style="--reveal-delay: 160ms"
+    >
+      Systems serving real citizens &mdash; a few engagements we can talk about.
+    </p>
+
+    <div class="mt-14 grid gap-8 md:grid-cols-3 md:gap-6">
+      {
+        clients.map((c, i) => (
+          <article
+            class="reveal work-card relative flex flex-col p-7 transition-transform duration-500 hover:-translate-y-1"
+            style={`--reveal-delay: ${i * 110}ms`}
+          >
+            <div class={`tape -top-3.5 left-8 ${i === 1 ? "rotate-2" : "-rotate-2"}`}></div>
+            <div class="flex items-center gap-4">
+              <img
+                src={c.logo}
+                alt={`${c.name} logo`}
+                class="h-16 w-16 shrink-0 rounded-sm border border-ink/10 bg-white object-contain p-1.5"
+                loading="lazy"
+              />
+              <div>
+                <h3 class="font-display text-xl font-medium tracking-tight text-ink">
+                  {c.name}
+                </h3>
+                <p class="mt-1 font-mono text-[10px] tracking-[0.2em] text-ink-faint uppercase">
+                  {c.tag}
+                </p>
+              </div>
+            </div>
+            <p class="mt-5 flex-1 leading-relaxed text-ink-soft">{c.desc}</p>
+            <a
+              href={c.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-flex items-center gap-1.5 font-mono text-[13px] break-all text-ink underline decoration-marker/50 decoration-2 underline-offset-4 transition-colors hover:text-marker"
+            >
+              {c.label} <i class="ph ph-arrow-up-right shrink-0" />
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="reveal mt-10 rotate-[-1deg] font-hand text-2xl text-ink-faint">
+      ...plus private clients with internal systems — no public URLs to show.
+    </p>
+  </div>
+</section>
