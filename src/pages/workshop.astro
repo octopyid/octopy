@@ -27,6 +27,7 @@ const boxes = [
   {
     n: "003",
     title: "laravel-impersonate",
+    repo: "octopyid/laravel-impersonate",
     tag: "Open source",
     tagColor: "text-ink-faint",
     desc: "Log in as any user in Laravel apps. 300+ stars on GitHub.",
@@ -36,6 +37,7 @@ const boxes = [
   {
     n: "004",
     title: "rune",
+    repo: "octopyid/rune",
     tag: "Open source",
     tagColor: "text-ink-faint",
     desc: "CLI-first task runner. Tasks as commands, not shell recipes.",
@@ -45,6 +47,7 @@ const boxes = [
   {
     n: "005",
     title: "filament-palette",
+    repo: "octopyid/filament-palette",
     tag: "Open source",
     tagColor: "text-ink-faint",
     desc: "Custom color palettes for FilamentPHP.",
@@ -54,6 +57,7 @@ const boxes = [
   {
     n: "006",
     title: "filament-tabify",
+    repo: "octopyid/filament-tabify",
     tag: "Open source",
     tagColor: "text-ink-faint",
     desc: "Tabbed widgets for Filament dashboards.",
@@ -63,6 +67,7 @@ const boxes = [
   {
     n: "007",
     title: "laravel-inotify",
+    repo: "octopyid/laravel-inotify",
     tag: "Open source",
     tagColor: "text-ink-faint",
     desc: "Filesystem watcher for Laravel.",
@@ -72,6 +77,7 @@ const boxes = [
   {
     n: "008",
     title: "OctopyFramework",
+    repo: "octopyid/OctopyFramework",
     tag: "Open source",
     tagColor: "text-ink-faint",
     desc: "Lightweight PHP framework, Laravel look-alike. Where it all started.",
@@ -124,6 +130,15 @@ const boxes = [
                 {box.title}
               </h2>
               <p class="mt-3 flex-1 leading-relaxed text-ink-soft">{box.desc}</p>
+              {box.repo && (
+                <img
+                  src={`https://img.shields.io/github/stars/${box.repo}?style=flat-square`}
+                  alt={`GitHub stars for ${box.title}`}
+                  class="mt-4 h-5 self-start"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                />
+              )}
               <div class="mt-5 flex flex-wrap gap-2">
                 {box.tags.map((t) => (
                   <span class="rounded-sm border border-ink/12 px-2.5 py-1 font-mono text-[11px] text-ink-soft">
