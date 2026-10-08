@@ -1,13 +1,14 @@
 # Octopy — octopy.dev
 
-Company profile for **Octopy**, an independent software studio. Concept: *annual report* —
-the studio presented as its own yearly report. Cover, contents, letter from the founder,
-by the numbers, holdings, open source, outlook.
+Company profile for **Octopy**, an independent software studio. Concept: *terminal* —
+the studio as an interactive shell. Boot sequence, working prompt (`help`, `whoami`,
+`products`, `stack`, `contact`), tmux-style status bar.
 
 Built with [Astro](https://astro.build), [Tailwind CSS v4](https://tailwindcss.com),
 and [Phosphor Icons](https://phosphoricons.com).
 
-Previous concepts are archived: `archive/deep-sea`, `archive/workbench`.
+Previous concepts are archived: `archive/deep-sea`, `archive/workbench`,
+`archive/annual-report`.
 
 ## Develop
 

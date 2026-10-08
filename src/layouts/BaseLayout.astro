@@ -1,9 +1,9 @@
 ---
 import "../styles/global.css";
 
-const title = "Octopy — Annual Report 2026";
+const title = "octopy — supian@octopy:~";
 const description =
-  "Octopy annual report: a one-person software studio. Letter from the founder, by the numbers, holdings, and outlook.";
+  "Octopy is an independent software studio building reliable web applications and server infrastructure. Home of Poka.";
 ---
 
 <!doctype html>
@@ -16,44 +16,62 @@ const description =
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta name="theme-color" content="#faf9f5" />
+    <meta name="theme-color" content="#0a0d10" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23161310'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='%23faf9f5' font-family='Georgia'%3EO%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230a0d10'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%233fb950' font-family='monospace' font-weight='bold'%3E%3E_%3C/text%3E%3C/svg%3E"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body>
-    <nav class="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-paper/90 backdrop-blur-md">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <a href="/#cover" class="flex items-baseline gap-2">
-          <span class="font-display text-xl font-semibold tracking-tight text-ink">Octopy</span>
-          <span class="font-mono text-[10px] tracking-[0.25em] text-ink-faint uppercase"
-            >AR &middot; 2026</span
-          >
+  <body class="scanlines">
+    <nav class="fixed inset-x-0 top-0 z-50 border-b border-term-line bg-term-bg/90 backdrop-blur-md">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5 text-sm">
+        <a href="#boot" class="flex items-center gap-2">
+          <span class="term-prompt font-bold">supian@octopy</span>
+          <span class="text-term-faint">:</span>
+          <span class="term-path">~</span>
+          <span class="cursor-blink inline-block h-4 w-2 bg-term-green"></span>
         </a>
-        <div
-          class="hidden items-center gap-7 font-mono text-[11px] tracking-[0.2em] text-ink-soft uppercase sm:flex"
-        >
-          <a href="/#letter" class="transition-colors hover:text-ledger">Letter</a>
-          <a href="/#numbers" class="transition-colors hover:text-ledger">Numbers</a>
-          <a href="/#holdings" class="transition-colors hover:text-ledger">Holdings</a>
-          <a href="/#outlook" class="transition-colors hover:text-ledger">Outlook</a>
-          <a href="/#contact" class="transition-colors hover:text-ledger">Contact</a>
+        <div class="hidden items-center gap-6 text-[13px] text-term-dim sm:flex">
+          <a href="#whoami" class="transition-colors hover:text-term-green"
+            ><span class="text-term-faint">$</span> whoami</a
+          >
+          <a href="#products" class="transition-colors hover:text-term-green"
+            ><span class="text-term-faint">$</span> ls ./products</a
+          >
+          <a href="#stack" class="transition-colors hover:text-term-green"
+            ><span class="text-term-faint">$</span> cat toolbox.conf</a
+          >
+          <a href="#contact" class="transition-colors hover:text-term-green"
+            ><span class="text-term-faint">$</span> ./contact.sh</a
+          >
         </div>
       </div>
     </nav>
 
-    <main>
+    <main class="pb-14">
       <slot />
     </main>
 
+    <!-- tmux-style status bar -->
+    <div
+      class="fixed inset-x-0 bottom-0 z-50 border-t border-term-line bg-term-panel/95 backdrop-blur-md"
+    >
+      <div
+        id="statusbar"
+        class="mx-auto flex max-w-6xl items-center gap-1 overflow-x-auto px-5 py-2 font-mono text-[11px] whitespace-nowrap"
+      >
+        <span class="mr-2 rounded bg-term-green px-2 py-0.5 font-bold text-[#04120a]">octopy</span>
+      </div>
+    </div>
+
     <script>
+      // Scroll reveal (threshold 0 — safe for tall elements on mobile)
       const io = new IntersectionObserver(
         (entries) => {
           for (const e of entries) {
@@ -66,6 +84,57 @@ const description =
         { threshold: 0 },
       );
       document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // tmux status bar — highlights the section in view
+      const bar = document.getElementById("statusbar");
+      const tabs = [
+        { id: "boot", label: "0:boot" },
+        { id: "whoami", label: "1:whoami" },
+        { id: "products", label: "2:products" },
+        { id: "stack", label: "3:stack" },
+        { id: "contact", label: "4:contact" },
+      ];
+      const btns: HTMLAnchorElement[] = [];
+      if (bar) {
+        for (const t of tabs) {
+          const a = document.createElement("a");
+          a.href = `#${t.id}`;
+          a.textContent = t.label;
+          a.className =
+            "rounded px-2 py-0.5 text-term-dim transition-colors hover:text-term-text";
+          bar.appendChild(a);
+          btns.push(a);
+        }
+        const tail = document.createElement("span");
+        tail.className = "ml-auto hidden text-term-faint sm:inline";
+        const d = new Date();
+        tail.textContent = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
+          d.getDate(),
+        ).padStart(2, "0")} · online`;
+        bar.appendChild(tail);
+      }
+      function setActive(id: string) {
+        btns.forEach((b, i) => {
+          const on = tabs[i].id === id;
+          b.className =
+            "rounded px-2 py-0.5 transition-colors " +
+            (on
+              ? "bg-term-line font-bold text-term-green"
+              : "text-term-dim hover:text-term-text");
+        });
+      }
+      const secIO = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) setActive(e.target.id);
+          }
+        },
+        { rootMargin: "-40% 0px -55% 0px" },
+      );
+      tabs.forEach((t) => {
+        const el = document.getElementById(t.id);
+        if (el) secIO.observe(el);
+      });
     </script>
   </body>
 </html>

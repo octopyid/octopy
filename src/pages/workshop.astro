@@ -1,155 +1,60 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const boxes = [
-  {
-    n: "001",
-    title: "Poka",
-    tag: "Flagship",
-    desc: "Offline-first personal finance. Open-core to its bones — the Community Edition lives on GitHub under Apache 2.0, and the Premium tier is in Google Play review.",
-    tags: ["Finance", "Offline-first", "Open-core"],
-    links: [
-      { label: "getpoka.app", href: "https://getpoka.app" },
-      { label: "GitHub", href: "https://github.com/getpoka/poka-ce" },
-    ],
-    featured: true,
-  },
-  {
-    n: "002",
-    title: "Tako",
-    tag: "Lab",
-    desc: "Self-hosted platform-as-a-service — a Dokploy-style control plane for shipping apps on your own servers.",
-    tags: ["PaaS", "Self-hosted"],
-    links: [{ label: "gettako.dev", href: "https://gettako.dev" }],
-  },
-  {
-    n: "003",
-    title: "laravel-impersonate",
-    tag: "Open source",
-    desc: "Log in as any user in Laravel apps. 300+ stars on GitHub.",
-    tags: ["Laravel", "Auth"],
-    links: [{ label: "GitHub", href: "https://github.com/octopyid/laravel-impersonate" }],
-  },
-  {
-    n: "004",
-    title: "rune",
-    tag: "Open source",
-    desc: "CLI-first task runner. Tasks as commands, not shell recipes.",
-    tags: ["Go", "CLI"],
-    links: [{ label: "GitHub", href: "https://github.com/octopyid/rune" }],
-  },
-  {
-    n: "005",
-    title: "filament-palette",
-    tag: "Open source",
-    desc: "Custom color palettes for FilamentPHP.",
-    tags: ["Laravel", "Filament"],
-    links: [{ label: "GitHub", href: "https://github.com/octopyid/filament-palette" }],
-  },
-  {
-    n: "006",
-    title: "filament-tabify",
-    tag: "Open source",
-    desc: "Tabbed widgets for Filament dashboards.",
-    tags: ["Laravel", "Filament"],
-    links: [{ label: "GitHub", href: "https://github.com/octopyid/filament-tabify" }],
-  },
-  {
-    n: "007",
-    title: "laravel-inotify",
-    tag: "Open source",
-    desc: "Filesystem watcher for Laravel.",
-    tags: ["Laravel"],
-    links: [{ label: "GitHub", href: "https://github.com/octopyid/laravel-inotify" }],
-  },
-  {
-    n: "008",
-    title: "OctopyFramework",
-    tag: "Open source",
-    desc: "Lightweight PHP framework, Laravel look-alike. Where it all started.",
-    tags: ["PHP", "MVC"],
-    links: [{ label: "GitHub", href: "https://github.com/octopyid/OctopyFramework" }],
-  },
+const items = [
+  { n: "poka", kind: "dir", desc: "flagship · open-core · getpoka.app", href: "https://getpoka.app" },
+  { n: "tako", kind: "dir", desc: "lab · self-hosted paas · gettako.dev", href: "https://gettako.dev" },
+  { n: "laravel-impersonate", kind: "pkg", desc: "login as any user · 300+ stars", href: "https://github.com/octopyid/laravel-impersonate" },
+  { n: "rune", kind: "pkg", desc: "cli-first task runner", href: "https://github.com/octopyid/rune" },
+  { n: "filament-palette", kind: "pkg", desc: "color palettes for filamentphp", href: "https://github.com/octopyid/filament-palette" },
+  { n: "filament-tabify", kind: "pkg", desc: "tabbed widgets for filament", href: "https://github.com/octopyid/filament-tabify" },
+  { n: "laravel-inotify", kind: "pkg", desc: "filesystem watcher for laravel", href: "https://github.com/octopyid/laravel-inotify" },
+  { n: "octopy-framework", kind: "pkg", desc: "lightweight php framework", href: "https://github.com/octopyid/OctopyFramework" },
 ];
 ---
 
 <BaseLayout>
   <section class="relative">
-    <div class="mx-auto max-w-6xl px-5 pt-36 pb-24 md:pt-44">
-      <p
-        class="reveal font-mono text-[11px] tracking-[0.3em] text-ink-faint uppercase"
-      >
-        Appendix A &mdash; The Workshop
+    <div class="mx-auto max-w-4xl px-5 pt-32 pb-24">
+      <p class="reveal text-sm text-term-faint">
+        <span class="term-prompt font-bold">supian@octopy</span><span class="text-term-faint">:</span><span class="term-path">~</span><span class="text-term-faint">$</span>
+        <span class="text-term-text"> find ./workshop -type f | sort</span>
       </p>
-      <h1
-        class="reveal mt-6 font-display text-4xl font-medium tracking-tight text-ink md:text-6xl"
-        style="--reveal-delay: 90ms"
-      >
-        Complete <em class="font-light">holdings.</em>
+      <h1 class="reveal mt-6 font-display text-4xl font-medium tracking-tight md:text-5xl" style="--reveal-delay: 80ms">
+        The <em class="font-light text-term-green">workshop.</em>
       </h1>
-      <p
-        class="reveal mt-5 max-w-xl leading-relaxed text-ink-soft"
-        style="--reveal-delay: 160ms"
-      >
-        Every asset on the studio&rsquo;s books &mdash; the flagship, the lab, and the
-        open-source line items.
+      <p class="reveal mt-4 max-w-xl text-sm leading-7 text-term-dim" style="--reveal-delay: 140ms">
+        Every tool on the shelf — the flagship, the lab, and the open-source line items.
       </p>
 
-      <div class="mt-14 grid gap-6 md:grid-cols-3">
+      <div class="reveal term-window mt-10 p-2 md:p-3" style="--reveal-delay: 200ms">
         {
-          boxes.map((box, i) => (
-            <article
-              class={`reveal flex flex-col border border-ink/15 bg-paper p-7 transition-transform duration-300 hover:-translate-y-1 ${
-                box.featured ? "md:col-span-2" : ""
-              }`}
-              style={`--reveal-delay: ${(i % 3) * 70}ms`}
+          items.map((item) => (
+            <a
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-baseline justify-between gap-4 rounded-md px-4 py-3.5 transition-colors hover:bg-term-line/50"
             >
-              <div class="flex items-start justify-between gap-4">
-                <p class="font-mono text-[10px] tracking-[0.25em] text-ink-faint uppercase">
-                  Item N&ordm; {box.n}
-                </p>
-                <span class="font-mono text-[10px] tracking-[0.25em] text-ledger uppercase">
-                  {box.tag}
+              <p class="text-[15px]">
+                <span class="text-term-dim">{item.kind === "dir" ? "drwxr-xr-x" : "-rw-r--r--"}</span>
+                <span class={`font-bold ${item.kind === "dir" ? "text-term-cyan" : "text-term-text"} transition-colors group-hover:text-term-green`}>
+                  {" "}{item.n}
                 </span>
-              </div>
-              <h2 class="mt-5 font-display text-2xl font-medium tracking-tight text-ink">
-                {box.title}
-              </h2>
-              <p class="mt-3 flex-1 leading-relaxed text-ink-soft">{box.desc}</p>
-              <div class="mt-5 flex flex-wrap gap-2">
-                {box.tags.map((t) => (
-                  <span class="border border-ink/15 px-2.5 py-1 font-mono text-[11px] text-ink-soft">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <div class="mt-6 flex flex-wrap gap-5 border-t border-ink/10 pt-5 font-mono text-sm">
-                {box.links.map((l) => (
-                  <a
-                    href={l.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 text-ink underline decoration-ledger/50 decoration-2 underline-offset-4 transition-colors hover:text-ledger"
-                  >
-                    {l.label} <i class="ph ph-arrow-up-right" />
-                  </a>
-                ))}
-              </div>
-            </article>
+                <span class="ml-3 hidden text-sm text-term-faint sm:inline">{item.desc}</span>
+              </p>
+              <i class="ph ph-arrow-up-right shrink-0 text-term-faint transition-all group-hover:-translate-y-0.5 group-hover:text-term-green" />
+            </a>
           ))
         }
       </div>
 
-      <p class="reveal mt-12 text-center font-mono text-sm text-ink-faint">
-        Smaller experiments live on{" "}
-        <a
-          href="https://github.com/octopyid"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-ink underline decoration-ledger/60 decoration-2 underline-offset-4 transition-colors hover:text-ledger"
-        >
-          GitHub <i class="ph ph-arrow-up-right" />
+      <p class="reveal mt-8 text-sm text-term-faint" style="--reveal-delay: 260ms">
+        <span class="text-term-faint">$</span>
+        <a href="https://github.com/octopyid" target="_blank" rel="noopener noreferrer" class="text-term-text underline decoration-term-green/50 underline-offset-4 hover:text-term-green">
+          ls ~/elsewhere
         </a>
+        <span class="text-term-faint"># smaller experiments live on github →</span>
       </p>
     </div>
   </section>

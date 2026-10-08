@@ -1,0 +1,206 @@
+---
+// Boot sequence + interactive prompt. The hero.
+---
+<section id="boot" class="relative flex min-h-svh items-center">
+  <div class="mx-auto w-full max-w-3xl px-5 pt-24 pb-16">
+    <div class="term-window reveal overflow-hidden">
+      <div class="flex items-center gap-2 border-b border-term-line px-4 py-3">
+        <span class="h-3 w-3 rounded-full bg-term-red/80"></span>
+        <span class="h-3 w-3 rounded-full bg-term-amber/80"></span>
+        <span class="h-3 w-3 rounded-full bg-term-green/80"></span>
+        <span class="ml-3 text-xs text-term-faint">supian@octopy: ~</span>
+      </div>
+
+      <div class="px-5 py-5 text-[13px] leading-7 md:px-6 md:text-sm">
+        <div id="term-output" aria-live="polite"></div>
+        <div class="mt-1 flex items-center gap-2">
+          <span class="shrink-0"
+            ><span class="term-prompt font-bold">visitor@octopy</span><span class="text-term-faint"
+              >:</span
+            ><span class="term-path">~</span><span class="text-term-faint">$</span></span
+          >
+          <input
+            id="term-input"
+            type="text"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            aria-label="Terminal input"
+            class="w-full bg-transparent text-term-text caret-term-green outline-none placeholder:text-term-faint"
+            placeholder=""
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal mt-6 flex flex-wrap items-center justify-center gap-2.5" style="--reveal-delay: 200ms">
+      <span class="mr-1 text-xs text-term-faint">try:</span>
+      {
+        ["whoami", "products", "stack", "contact", "help"].map((c) => (
+          <button
+            data-cmd={c}
+            class="cmd-chip rounded-md border border-term-line bg-term-panel px-3.5 py-1.5 text-xs text-term-dim transition-colors hover:border-term-green/50 hover:text-term-green"
+          >
+            {c}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const out = document.getElementById("term-output") as HTMLDivElement | null;
+  const input = document.getElementById("term-input") as HTMLInputElement | null;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const PROMPT =
+    '<span class="term-prompt font-bold">visitor@octopy</span><span class="text-term-faint">:</span><span class="term-path">~</span><span class="text-term-faint">$</span>';
+
+  function esc(s: string) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  }
+
+  function print(html: string) {
+    if (!out) return;
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    out.appendChild(div);
+    while (out.children.length > 80) out.removeChild(out.firstChild!);
+    div.scrollIntoView({ block: "nearest" });
+  }
+
+  function printCmd(cmd: string) {
+    print(`${PROMPT} <span class="text-term-text">${esc(cmd)}</span>`);
+  }
+
+  const BOOT: [string, string][] = [
+    ["cmd", "octopy --init"],
+    ["ok", "studio kernel loaded · 1 human detected"],
+    ["ok", "10 packages · 2 products · 0 funding"],
+    ["dim", "type `help` to list commands — or just scroll"],
+  ];
+
+  function renderBootLine([kind, text]: [string, string]) {
+    if (kind === "cmd") return `${PROMPT} <span class="text-term-text">${text}</span>`;
+    if (kind === "ok")
+      return `<span class="text-term-green">✓</span> <span class="text-term-dim">${text}</span>`;
+    return `<span class="text-term-faint">${text}</span>`;
+  }
+
+  async function boot() {
+    if (!out) return;
+    if (reduceMotion) {
+      BOOT.forEach((l) => print(renderBootLine(l)));
+      input?.focus({ preventScroll: true });
+      return;
+    }
+    for (const line of BOOT) {
+      if (line[0] === "cmd") {
+        // typed effect for the command itself
+        const div = document.createElement("div");
+        const cmdText = line[1];
+        div.innerHTML = `${PROMPT} <span class="text-term-text"></span><span class="cursor-blink inline-block h-4 w-2 translate-y-0.5 bg-term-green"></span>`;
+        out.appendChild(div);
+        const span = div.querySelector("span.text-term-text") as HTMLSpanElement;
+        for (const ch of cmdText) {
+          span.textContent += ch;
+          await new Promise((r) => setTimeout(r, 34));
+        }
+        div.querySelector(".cursor-blink")?.remove();
+      } else {
+        print(renderBootLine(line));
+      }
+      await new Promise((r) => setTimeout(r, 260));
+    }
+    input?.focus({ preventScroll: true });
+  }
+
+  function go(id: string) {
+    document.getElementById(id)?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+  }
+
+  const COMMANDS: Record<string, () => string[]> = {
+    help: () => [
+      `<span class="text-term-dim">available commands:</span>`,
+      `  <span class="text-term-cyan">whoami</span>     — the human behind the studio`,
+      `  <span class="text-term-cyan">products</span>   — what the studio ships`,
+      `  <span class="text-term-cyan">stack</span>      — the toolbox`,
+      `  <span class="text-term-cyan">contact</span>    — open a channel`,
+      `  <span class="text-term-cyan">notes</span>      — field notes`,
+      `  <span class="text-term-cyan">workshop</span>   — the full archive`,
+      `  <span class="text-term-cyan">clear</span>      — wipe the screen`,
+    ],
+    whoami: () => {
+      go("whoami");
+      return [`<span class="text-term-dim">scrolling to ./whoami …</span>`];
+    },
+    products: () => {
+      go("products");
+      return [`<span class="text-term-dim">opening ./products …</span>`];
+    },
+    stack: () => {
+      go("stack");
+      return [`<span class="text-term-dim">reading /etc/octopy/toolbox.conf …</span>`];
+    },
+    toolbox: () => {
+      go("stack");
+      return [`<span class="text-term-dim">reading /etc/octopy/toolbox.conf …</span>`];
+    },
+    contact: () => {
+      go("contact");
+      return [`<span class="text-term-dim">dialing …</span>`];
+    },
+    notes: () => {
+      location.href = "/notes";
+      return [`<span class="text-term-dim">opening /notes …</span>`];
+    },
+    workshop: () => {
+      location.href = "/workshop";
+      return [`<span class="text-term-dim">opening /workshop …</span>`];
+    },
+    clear: () => {
+      if (out) out.innerHTML = "";
+      return [];
+    },
+    sudo: () => [`<span class="text-term-amber">nice try.</span>`],
+    hello: () => [`<span class="text-term-dim">hello, visitor. type \`help\`.</span>`],
+    hi: () => [`<span class="text-term-dim">hello, visitor. type \`help\`.</span>`],
+  };
+
+  function run(raw: string) {
+    const cmd = raw.trim().toLowerCase();
+    if (!cmd) return;
+    printCmd(raw.trim());
+    const fn = COMMANDS[cmd];
+    if (fn) {
+      fn().forEach((line) => print(line));
+    } else {
+      print(
+        `<span class="text-term-red">command not found:</span> <span class="text-term-dim">${esc(cmd)} — try \`help\`</span>`,
+      );
+    }
+  }
+
+  input?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && input) {
+      run(input.value);
+      input.value = "";
+    }
+  });
+
+  document.querySelectorAll(".cmd-chip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const cmd = (btn as HTMLElement).dataset.cmd || "";
+      run(cmd);
+      input?.focus({ preventScroll: true });
+    });
+  });
+
+  // Focus input when clicking anywhere in the window
+  document
+    .querySelector("#boot .term-window")
+    ?.addEventListener("click", () => input?.focus({ preventScroll: true }));
+
+  boot();
+</script>

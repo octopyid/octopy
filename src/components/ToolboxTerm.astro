@@ -1,0 +1,70 @@
+---
+// $ cat /etc/octopy/toolbox.conf
+const groups = [
+  {
+    name: "build",
+    heroes: [
+      ["laravel", "PHP · daily driver", true],
+      ["flutter", "Poka's home", false],
+      ["go", "CLI tools", false],
+    ],
+    rest: ["dart", "typescript", "javascript", "node.js"],
+  },
+  {
+    name: "store",
+    heroes: [
+      ["postgresql", "where Poka lives", false],
+      ["redis", "hot cache", false],
+      ["mysql", "old reliable", false],
+    ],
+    rest: ["sqlite"],
+  },
+  {
+    name: "run",
+    heroes: [
+      ["ubuntu linux", "home turf", false],
+      ["cloudflare", "the front door", false],
+    ],
+    rest: ["waf", "mail servers", "cli tooling"],
+  },
+];
+---
+<section id="stack" class="relative border-t border-term-line">
+  <div class="mx-auto max-w-6xl px-5 py-20 md:py-28">
+    <p class="reveal text-sm text-term-faint">
+      <span class="term-prompt font-bold">supian@octopy</span><span class="text-term-faint">:</span><span class="term-path">~</span><span class="text-term-faint">$</span>
+      <span class="text-term-text"> cat /etc/octopy/toolbox.conf</span>
+    </p>
+    <p class="reveal mt-4 max-w-xl text-sm leading-7 text-term-dim" style="--reveal-delay: 60ms">
+      <span class="text-term-green">#</span> not a badge wall — the actual config.
+      <span class="text-term-green">#</span> highlighted entries get reached for daily.
+    </p>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        groups.map((g, gi) => (
+          <div class="reveal term-window p-6" style={`--reveal-delay: ${gi * 90}ms`}>
+            <p class="text-term-amber">[{g.name}]</p>
+            <ul class="mt-5 space-y-3.5 text-[15px]">
+              {
+                g.heroes.map(([tool, note, hot]) => (
+                  <li class="flex items-baseline justify-between gap-3">
+                    <span class={`font-bold ${hot ? "text-term-green" : "text-term-text"}`}>{tool}</span>
+                    <span class="text-right text-xs text-term-faint"># {note}</span>
+                  </li>
+                ))
+              }
+            </ul>
+            <p class="mt-5 border-t border-dashed border-term-line pt-4 text-xs leading-7 text-term-faint">
+              <span class="text-term-green"># also installed:</span> {g.rest.join(", ")}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="reveal mt-8 font-mono text-xs text-term-faint" style="--reveal-delay: 200ms">
+      <span class="text-term-green">#</span> ...and whatever the next job requires. tools are means, not the point.
+    </p>
+  </div>
+</section>
