@@ -1,5 +1,6 @@
 ---
 title: "Running Laravel Scheduler Without Cron Job: Is It Possible?"
+description: "Cron isn't the only way to run Laravel's scheduler. From a background worker loop to systemd timers — the options, the trade-offs, and when each makes sense."
 category: Laravel
 tags: [ scheduler, worker ]
 date: 2025-05-07 00:30
