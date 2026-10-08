@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <section class="relative">
+    <div class="mx-auto max-w-3xl px-5 pt-44 pb-24 text-center md:pt-44">
+      <div class="reveal work-card relative mx-auto max-w-xl -rotate-1 p-10 md:p-14">
+        <div class="tape -top-3.5 left-10 -rotate-6"></div>
+        <p class="font-mono text-[11px] tracking-[0.3em] text-ink-faint uppercase">
+          404 &mdash; Lost &amp; found
+        </p>
+        <h1 class="mt-6 font-display text-4xl font-medium tracking-tight text-ink md:text-5xl">
+          This page fell off <em class="font-light">the bench.</em>
+        </h1>
+        <p class="mx-auto mt-5 max-w-md leading-relaxed text-ink-soft">
+          The page you&rsquo;re looking for isn&rsquo;t pinned up here. It might have been
+          moved, renamed, or never existed.
+        </p>
+        <a
+          href="/"
+          class="mt-8 inline-flex items-center justify-center gap-2.5 rounded-sm bg-ink px-7 py-3.5 font-mono text-sm text-paper transition-transform duration-300 hover:-translate-y-0.5"
+        >
+          <i class="ph ph-arrow-left text-base"></i>
+          Back to the bench
+        </a>
+      </div>
+      <p class="reveal mt-8 rotate-[-1deg] font-hand text-2xl text-ink-faint" style="--reveal-delay: 150ms">
+        ...it was here a minute ago, we swear
+      </p>
+    </div>
+  </section>
+</BaseLayout>

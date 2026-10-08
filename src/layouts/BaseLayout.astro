@@ -16,6 +16,28 @@ const description =
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://octopy.dev/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://octopy.dev/og.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Octopy",
+        "url": "https://octopy.dev/",
+        "description": "Octopy is a software studio building reliable web applications and server infrastructure. Home of Poka.",
+        "founder": {
+          "@type": "Person",
+          "name": "Supian M.",
+          "url": "https://octopy.dev/#maker"
+        },
+        "sameAs": ["https://github.com/octopyid", "https://linkedin.com/in/supianidz"]
+      }
+    </script>
     <meta name="theme-color" content="#f3edde" />
     <link
       rel="icon"
