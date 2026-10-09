@@ -33,6 +33,7 @@ const clients = [
     tag: "Motorcycle workshop",
     year: "2025",
     desc: "Workshop management app for a motorcycle bengkel — inventory, transactions, and the full daily operation in one system.",
+    note: "Internal system · runs on LAN",
   },
   {
     logo: "/images/geo-mine-energy.webp",
@@ -89,7 +90,7 @@ const clients = [
               </div>
             </div>
             <p class="mt-5 flex-1 leading-relaxed text-ink-soft">{c.desc}</p>
-            {c.href && (
+            {c.href ? (
               <a
                 href={c.href}
                 target="_blank"
@@ -98,6 +99,12 @@ const clients = [
               >
                 {c.label} <i class="ph ph-arrow-up-right shrink-0" />
               </a>
+            ) : (
+              c.note && (
+                <span class="mt-6 inline-flex font-mono text-[13px] text-ink-faint">
+                  {c.note}
+                </span>
+              )
             )}
           </article>
         ))
