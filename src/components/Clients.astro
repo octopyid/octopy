@@ -13,6 +13,7 @@ const clients = [
     logo: "/images/ukpbj.webp",
     name: "UKPBJ Kab. HSS",
     tag: "Government procurement",
+    year: "2021 — present",
     desc: "SIOPEN — a marketplace for the regency's goods-and-services procurement, easing transactions between local government and SMEs.",
     href: "https://siopen.hulusungaiselatankab.go.id",
     label: "siopen.hulusungaiselatankab.go.id",
@@ -21,9 +22,24 @@ const clients = [
     logo: "/images/ukpbj.webp",
     name: "UKPBJ Kab. Balangan",
     tag: "Government procurement",
+    year: "2023 — present",
     desc: "Second district running the SIOPEN procurement marketplace — same platform, new regency.",
     href: "https://siopen.balangankab.go.id",
     label: "siopen.balangankab.go.id",
+  },
+  {
+    logo: "/images/rpm-banjarbaru.webp",
+    name: "RPM Banjarbaru",
+    tag: "Motorcycle workshop",
+    year: "2025",
+    desc: "Workshop management app for a motorcycle bengkel — inventory, transactions, and the full daily operation in one system.",
+  },
+  {
+    logo: "/images/geo-mine-energy.webp",
+    name: "Geo Mine Energy",
+    tag: "Mining services",
+    year: "2020",
+    desc: "Company website for a mining services firm — geological survey, drilling, and mine design.",
   },
 ];
 ---
@@ -48,7 +64,7 @@ const clients = [
       Systems serving real citizens &mdash; a few engagements we can talk about.
     </p>
 
-    <div class="mt-14 grid gap-8 md:grid-cols-3 md:gap-6">
+    <div class="mt-14 grid gap-8 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
       {
         clients.map((c, i) => (
           <article
@@ -68,19 +84,21 @@ const clients = [
                   {c.name}
                 </h3>
                 <p class="mt-1 font-mono text-[10px] tracking-[0.2em] text-ink-faint uppercase">
-                  {c.tag}
+                  {c.tag}{c.year && ` · ${c.year}`}
                 </p>
               </div>
             </div>
             <p class="mt-5 flex-1 leading-relaxed text-ink-soft">{c.desc}</p>
-            <a
-              href={c.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="mt-6 inline-flex items-center gap-1.5 font-mono text-[13px] break-all text-ink underline decoration-marker/50 decoration-2 underline-offset-4 transition-colors hover:text-marker"
-            >
-              {c.label} <i class="ph ph-arrow-up-right shrink-0" />
-            </a>
+            {c.href && (
+              <a
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-6 inline-flex items-center gap-1.5 font-mono text-[13px] break-all text-ink underline decoration-marker/50 decoration-2 underline-offset-4 transition-colors hover:text-marker"
+              >
+                {c.label} <i class="ph ph-arrow-up-right shrink-0" />
+              </a>
+            )}
           </article>
         ))
       }
